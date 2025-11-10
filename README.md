@@ -1,9 +1,9 @@
 
-# DevLab: TEMT600 Ambient Light Sensor
+# DevLab: TEMT6000 Ambient Light Sensor
 
 ## Introduction
 
-The **DevLab TEMT600 Ambient Light Sensor** is a compact module built around the Vishay TEMT600 phototransistor. It provides a linear analog voltage proportional to ambient light intensity, making it ideal for display back-light control, energy-saving systems, photographic exposure adjustment, and environmental monitoring applications.
+The **DevLab TEMT6000 Ambient Light Sensor** is a compact module built around the Vishay TEMT6000 phototransistor. It provides a linear analog voltage proportional to ambient light intensity, making it ideal for display back-light control, energy-saving systems, photographic exposure adjustment, and environmental monitoring applications.
 
 
 <div align="center">
@@ -29,7 +29,7 @@ The **DevLab TEMT600 Ambient Light Sensor** is a compact module built around the
 
 | Feature                 | Description                                                   |
 |------------------------|---------------------------------------------------------------|
-| Sensor Type            | Ambient Light Sensor (TEMT600)                                |
+| Sensor Type            | Ambient Light Sensor (TEMT6000)                                |
 | Supply Voltage         | 3.3V - 5V                                                     |
 | Interface              | Analog Output                                                 |
 | Light Sensitivity     | 0.2 to 1000 lux (typical)                                     |
@@ -53,9 +53,9 @@ The **DevLab TEMT600 Ambient Light Sensor** is a compact module built around the
 
 ## Resources
 
-- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/hardware/README.md#hardware)
-- [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_temt600_ambient_light_sensor/blob/main/hardware/README.md#-dimensions)
-- [Datasheet](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/datasheet_professional.html)
+- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_temt6000_ambient_light_sensor/blob/main/hardware/README.md#hardware)
+- [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_temt6000_ambient_light_sensor/blob/main/hardware/README.md#-dimensions)
+- [Datasheet](https://unit-electronics-mx.github.io/unit_temt6000_ambient_light_sensor/datasheet_professional.html)
 
 
 ## 📝 License
