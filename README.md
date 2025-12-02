@@ -16,10 +16,10 @@ The **DevLab TEMT6000 Ambient Light Sensor** is a compact module built around th
 ### Quick Setup
 
 
-[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/index.html)
-[<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/datasheet_professional.html)
+[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://wiki.uelectronics.com/wiki/devlab-temt6000-ambient-light-sensor)
+[<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/blob/main/hardware/unit_datasheet_v_1_0_0_ue0098_temt6000_ambient_light_sensor_en.pdf)
 [<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">](https://uelectronics.com/)
-[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://unit-electronics-mx.github.io/unit_temt600_ambient_light_sensor/software/getting-started.html)
+[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/tree/main/software)
 
 </div>
 
@@ -53,9 +53,9 @@ The **DevLab TEMT6000 Ambient Light Sensor** is a compact module built around th
 
 ## Resources
 
-- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_temt6000_ambient_light_sensor/blob/main/hardware/README.md#hardware)
-- [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_temt6000_ambient_light_sensor/blob/main/hardware/README.md#-dimensions)
-- [Datasheet](https://unit-electronics-mx.github.io/unit_temt6000_ambient_light_sensor/datasheet_professional.html)
+- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/blob/main/hardware/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf)
+- [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/blob/main/hardware/unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.pdf)
+- [Datasheet](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/blob/main/hardware/unit_datasheet_v_1_0_0_ue0098_temt6000_ambient_light_sensor_en.pdf)
 
 
 ## 📝 License
