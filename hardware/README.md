@@ -1,6 +1,6 @@
 # Hardware
 <div align="center">
-    <a href="./unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="resources/Schematics_icon.jpg?raw=false" width="450px" alt="Schematics"/><br/> Schematics</a>
+    <a href="./unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="./resources/v_3_1_0/Schematics_icon.jpg" width="450px" alt="Schematics"/><br/> Schematics</a>
 </div>
 
 ---
