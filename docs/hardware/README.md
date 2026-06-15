@@ -61,7 +61,7 @@ El formato se mantendrá automáticamente en el PDF generado.
 ## 🔌 Pinout
 
 <div align="center">
-    <a href="./unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.pdf"><img src="resources/unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.jpg" width="500px"><br/>Pinout</a>
+    <a href="./unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.pdf"><img src="./resources/pinout/v_0_3_1/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.png" width="500px"><br/>Pinout</a>
     <br/><br/>
 
 </div>
