@@ -60,9 +60,11 @@ The controller implements DevLab Device Protocol (DDP) v1.0. The TEMT6000
 profile is identified by Device ID `0x0102`; command `TEMT6000_RAW` (`0x80`)
 returns a 12-bit ADC sample in an unsigned 16-bit little-endian response. The
 current controller firmware reports factory address `0x20`, firmware/hardware 1.0,
-and capabilities `0x000001BB`. The technical package does not provide the
-exact controller memory/package option, current-revision schematic, or complete
-module electrical limits.
+and capabilities `0x000001BB`. Procurement does not establish the fitted
+controller suffix, so the published controller voltage guidance uses the
+conservative x7 range without identifying the physical variant. The technical
+package also does not provide the exact memory/package option,
+current-revision schematic, or complete module electrical limits.
 
 `SWDIO` shares physical pin `PA10` with `SDA`, and `SWCLK` shares `PB6` with
 `SCL`; there is no separate SWD port and the two modes are mutually exclusive.

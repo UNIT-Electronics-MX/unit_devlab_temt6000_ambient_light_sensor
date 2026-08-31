@@ -23,7 +23,7 @@ same command/STOP/read transaction model and identity sequence.
 | Configurable address range | `0x08..0x77` |
 | I2C clock | 100 kHz to 400 kHz; examples use 400 kHz |
 | Controller | PY32F003, 32-bit Arm Cortex-M0+, up to 32 MHz |
-| Controller supply | x7 variant: 2.0–5.5 V; supports nominal 3.3 V and 5 V |
+| Published controller supply range | 2.0–5.5 V, using the conservative x7 voltage limit; fitted suffix not asserted |
 | Controller bus pins | `PB6/SCL`, `PA10/SDA` |
 | Command/parameter size | One byte per write transaction |
 | Maximum prepared response | Four bytes |
