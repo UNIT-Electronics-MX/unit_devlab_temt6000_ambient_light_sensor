@@ -8,18 +8,11 @@ electrical characteristics around these mapped signals.
 
 ### **3.1 Functional Paths** {.section-page}
 
-```text
-                              ┌──────────────→ direct SIG contact
-Ambient light → TEMT6000 ─────┤
-                              └→ PA2 ADC · controller → PA10/SDA · PB6/SCL → host
-                                             │
-                            PB5 → BUILTIN · RESET
+![](tools/product-reference/assets/functional-block-diagram.png){width=7.1in}
 
-                       factory SWD aliases: PA10/SWDIO · PB6/SWCLK
-                       (same physical pins as I2C; mutually exclusive)
-
-                     PA0 / PA1 → reserved, no current application
-```
+**Figure 3.1 — Functional signal and control paths.** The direct `SIG` branch
+and controller `PA2` ADC observe the sensor path. DDP publishes the averaged
+sample through I2C and controls the internal `PB5/BUILTIN` indicator.
 
 ### **3.2 Board Topology**
 
@@ -54,7 +47,37 @@ Current firmware/hardware versions are 1.0 and capabilities are `0x000001BB`.
 Hosts must still verify DDP identity rather than recognizing the product from
 its address alone.
 
-### **3.4 Direct Analog Mode**
+### **3.4 I2C Address and DDP Command Map** {.section-page}
+
+The bus address and command address are independent values. A library receives
+the **7-bit I2C slave address** (`0x20` at the factory) and then sends one
+**DDP command byte** from the map below. Do not pass the shifted wire bytes
+`0x40`/`0x41` as the device address.
+
+```text
+host → [7-bit slave address + W] [DDP command byte] → STOP
+       wait 2…5 ms
+host ← [7-bit slave address + R] [exact response length] ← STOP
+```
+
+| DDP command-byte block | Commands defined for this profile | Current support |
+|---:|---|---|
+| `0x00..0x1F` Device information | `0x00 GET_DEVICE_ID`; `0x01 GET_FIRMWARE_VERSION`; `0x02 GET_HARDWARE_VERSION`; `0x03 GET_CAPABILITIES`; `0x04 GET_PROTOCOL` | Implemented; these five values form the identity/discovery sequence |
+| `0x20..0x3F` Configuration | `0x20 GET_I2C_ADDR`; `0x21 SET_I2C_ADDR`; `0x22 SAVE_CONFIG`; `0x23 RESET_FACTORY`; `0x24 GET_I2C_STATUS` | Implemented; setters persist configuration and address changes require rediscovery |
+| `0x40..0x5F` Digital I/O | `0x40 READ_GPIO0` | Reads `PA4`; `0x41 READ_GPIO1` and `0x42/0x43 WRITE_GPIO0/1` are unsupported |
+| `0x60..0x7F` Analog input | `0x60 READ_ADC0`; `0x62 SET_ADC_AVERAGING`; `0x63 GET_ADC_AVERAGING` | Implemented for `PA2/ADC0`; `0x61 READ_ADC1` is unsupported |
+| `0x80..0x9F` Sensor data | `0x80 TEMT6000_RAW` | Implemented; same unsigned 12-bit sample as `READ_ADC0` |
+| `0xA0..0xBF` Actuators | `0xA0 RELAY_OFF`; `0xA1 RELAY_ON`; `0xA2 RELAY_TOGGLE`; `0xA3 SET_TOGGLE_TIME`; `0xA4 GET_TOGGLE_TIME` | Implemented for `PB5/BUILTIN`; other actuator bytes are unsupported |
+| `0xC0..0xDF` Calibration | None | Capability is not announced; commands are unsupported |
+| `0xE0..0xEF` Reserved | None | Reserved; do not use |
+| `0xF0..0xFF` System | `0xF0 RESET`; `0xF1 WATCHDOG_RESET`; `0xF2 GET_RESET_INFO`; `0xF3 DISABLE_NRST`; `0xF4 CHECK_NRST` | `RESET` is implemented without a reply; watchdog is experimental; reset-info/NRST functions are unsupported or incomplete |
+
+Any command byte not listed as implemented returns the current packed
+unknown-command response. Staged commands (`0x21`, `0x62`, and `0xA3`) require
+a separate value write within 250 ms; the command and value must not be sent in
+the same I2C write transaction.
+
+### **3.5 Direct Analog Mode**
 
 The top-side `SIG` contact provides direct sensor access for ADC experiments,
 production test, or calibration. Its V0.3.1 transfer function and safe input
@@ -65,7 +88,7 @@ The controller samples this sensor path internally on `PA2`, mapped to logical
 `ADC0`. `READ_ADC0` and the module-specific `TEMT6000_RAW` command are
 equivalent in the current firmware.
 
-### **3.5 I2C Disable Bridge** {.section-page}
+### **3.6 I2C Disable Bridge** {.section-page}
 
 The released pinout instructs the user to cut a solder bridge to disable I2C.
 The missing current schematic leaves the exact isolation boundary unspecified.
@@ -73,7 +96,7 @@ Do not assume that cutting the bridge removes pull-ups, disconnects every
 controller pin, or changes the analog transfer in a particular way. Rework only
 with power removed and after continuity checks on the target revision.
 
-### **3.6 Optical Response**
+### **3.7 Optical Response**
 
 The reference-only Vishay document 81579 specifies a 570 nm peak, a 440 nm to
 800 nm half-sensitivity spectral bandwidth, and a ±60° half-sensitivity angle
@@ -81,7 +104,7 @@ for its TEMT6000X01. These values are comparative, not guaranteed for the
 unconfirmed fitted part. Source spectrum, temperature, sensor spread,
 enclosure windows, and mechanical shadowing can also change the response.
 
-### **3.7 Service and Expansion Signals**
+### **3.8 Service and Expansion Signals**
 
 The pinout exposes `PA0`, `PA1`, `RESET`, `SWDIO`, and `SWCLK`. `PA0` and `PA1`
 have no application assignment in the current firmware and are reserved for
