@@ -11,7 +11,7 @@ does not identify the manufacturer or exact part fitted to the board.
 | Parameter | Value | Status |
 |---|---:|---|
 | Nominal module supply | 3.3 V or 5 V | Supported operating points; use a current-limited source during bring-up |
-| Controller operating voltage | x6: 1.7–5.5 V; x7: 2.0–5.5 V | Both variants support nominal 3.3 V and 5 V; exact suffix is not recorded |
+| Controller operating voltage | x7: 2.0–5.5 V | Selected product variant; supports nominal 3.3 V and 5 V |
 | I2C logic domain | Follows the actual bus pull-up rail | At 5 V, use a 5 V-tolerant host or bidirectional level translation |
 | I2C bus speed | 100 kHz to 400 kHz | Supported operating range |
 | I2C addressing | 7-bit slave | Valid configurable addresses are `0x08..0x77` |
@@ -36,22 +36,21 @@ still require the V0.3.1 schematic and qualification.
 
 ### **2.2 Interface Controller Characteristics**
 
-The interface controller is a PY32F003. The following characteristics apply
-to this controller family. The
-exact x6/x7 voltage-temperature suffix, memory density, and package fitted to
-this module have not yet been recorded.
+The interface controller is a PY32F003 x7 variant. The following
+characteristics apply to this selected controller variant. The exact memory
+density and package fitted to this module have not yet been recorded.
 
 | Feature | Controller capability |
 |---|---|
 | CPU | 32-bit Arm Cortex-M0+, up to 32 MHz |
 | Memory | Up to 64 KB Flash and up to 8 KB SRAM |
-| Operating voltage | x6: 1.7–5.5 V; x7: 2.0–5.5 V |
+| Operating voltage | 2.0–5.5 V |
 | ADC | One 12-bit ADC, up to 10 external channels, conversion range `0..VCC` |
 | I2C | Standard mode 100 kHz, Fast mode 400 kHz, 7-bit addressing |
 | GPIO | Up to 18 I/Os, all available as external interrupts |
 | Timers | TIM1, TIM3, TIM14, TIM16, TIM17, LPTIM, IWDG, WWDG, SysTick, IRTIM |
 | Other interfaces | SPI, two USARTs, DMA, RTC, CRC-32, two comparators, UID; SWD is reserved for factory use on this module |
-| Temperature variants | x6: −40 to +85 °C; x7: −40 to +105 °C |
+| Operating temperature | −40 to +105 °C |
 
 The controller range establishes that 5 V is valid. It does
 not by itself establish pull-up resistance, complete-module current, or the
@@ -109,7 +108,7 @@ validated on V0.3.1.
 - Pull-up resistance, bus capacitance allowance, and level compatibility
 - Direct analog transfer function, load resistance, range, accuracy, and source impedance
 - Guaranteed lux range, accuracy, repeatability, response time, and calibration
-- Exact controller x6/x7 suffix, memory/package option, released firmware image, and update procedure
+- Exact controller memory/package option, released firmware image, and update procedure
 - Board-level temperature, ESD, EMC, humidity, and ingress ratings
 
 ### **2.7 Electrical Precautions**

@@ -27,7 +27,7 @@ No accessory bundle is specified. Typical integration items are:
 | Product family | Atom |
 | Product type | I2C-compatible and direct-analog ambient-light module |
 | Optical component | TEMT6000; fitted manufacturer/orderable part not confirmed |
-| Interface controller | 32-bit Arm Cortex-M0+; exact x6/x7 suffix and package not recorded |
+| Interface controller | 32-bit Arm Cortex-M0+ x7 variant; exact memory density and package not recorded |
 | Manufacturer Part Number (MPN) | UE0098 |
 | Current board artwork | V0.3.1 |
 | Available schematic | Legacy analog hardware V0.0.1 only |
@@ -41,7 +41,7 @@ independently.
 | Assembly | Function | Source status |
 |---|---|---|
 | TEMT6000 sensor | Converts visible light to photocurrent | Functional identity shown by board/pinout artwork; manufacturer and exact suffix unconfirmed |
-| Interface controller | Samples or processes the sensor for I2C access | 32-bit Arm Cortex-M0+ device; exact x6/x7 suffix and package not recorded |
+| Interface controller | Samples or processes the sensor for I2C access | 32-bit Arm Cortex-M0+ x7 variant; exact memory density and package not recorded |
 | Qwiic positions A and B | I2C power and bus access | Shown as optional horizontal JST connectors |
 | Direct contacts | `VCC`, `GND`, and analog `SIG` | Identified on the top view |
 | I2C disable bridge | Disconnects or disables I2C when cut | Function identified; exact circuit unspecified |

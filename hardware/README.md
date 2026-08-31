@@ -78,9 +78,9 @@ The module is a 7-bit I2C slave and supports bus clocks from 100 kHz through
 The onboard interface controller has a 32-bit Arm Cortex-M0+ core running at
 up to 32 MHz. It provides a 12-bit ADC whose input range is
 `0..VCC`, and an I2C peripheral supporting 7-bit addressing at 100 kHz and
-400 kHz. The x6 device variant operates from 1.7 V to 5.5 V and the x7 variant
-from 2.0 V to 5.5 V; therefore both include nominal 3.3 V and 5 V operation.
-The exact x6/x7 suffix and package fitted to this board remain to be recorded.
+400 kHz. This product uses the x7 controller variant, rated for operation from
+2.0 V to 5.5 V and −40 °C to +105 °C; this includes nominal 3.3 V and 5 V
+operation. The exact memory-density and package options remain to be recorded.
 
 ## TEMT6000 Reference Characteristics
 

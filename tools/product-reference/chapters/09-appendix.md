@@ -30,7 +30,7 @@ SWD, indicators, or I2C disable bridge.
 ### **9.3 Required Technical Releases**
 
 - V0.3.1 schematic and bill of materials
-- Exact controller x6/x7 suffix and package, released firmware image, and update procedure
+- Exact controller memory/package option, released firmware image, and update procedure
 - Exact oscillator/timing tolerances and uniform future DDP status behavior
 - Complete-module supply/logic absolute-maximum ratings and current consumption
 - Pull-up values and bus-loading limits

@@ -61,7 +61,7 @@ profile is identified by Device ID `0x0102`; command `TEMT6000_RAW` (`0x80`)
 returns a 12-bit ADC sample in an unsigned 16-bit little-endian response. The
 current controller firmware reports factory address `0x20`, firmware/hardware 1.0,
 and capabilities `0x000001BB`. The technical package does not provide the
-exact controller suffix/package, current-revision schematic, or complete
+exact controller memory/package option, current-revision schematic, or complete
 module electrical limits.
 
 `SWDIO` shares physical pin `PA10` with `SDA`, and `SWCLK` shares `PB6` with
