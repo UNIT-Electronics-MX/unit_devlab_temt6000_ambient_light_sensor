@@ -22,6 +22,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: github-pages
@@ -33,6 +34,7 @@ jobs:
     permissions:
       contents: write
       pages: read
+      pull-requests: write
 
     steps:
     - name: Checkout repository
@@ -77,16 +79,30 @@ jobs:
       with:
         path: docs
 
-    - name: Commit and push changes
-      if: github.event_name != 'pull_request' && github.run_attempt == 1
-      continue-on-error: true
+    - name: Create documentation update pull request
+      if: github.event_name != 'pull_request'
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
+        docs_branch="automation/docs-${GITHUB_SHA}"
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git switch --create "$docs_branch"
         git add docs/
         if ! git diff --cached --quiet; then
           git commit -m "Auto-update hardware documentation"
-          git push
+          git push --force origin "$docs_branch"
+
+          if [[ -z "$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$docs_branch" --state open --json number --jq '.[0].number')" ]]; then
+            gh pr create \
+              --repo "$GITHUB_REPOSITORY" \
+              --base main \
+              --head "$docs_branch" \
+              --title "docs: update generated hardware documentation" \
+              --body "Generated from source commit ${GITHUB_SHA}. Merge this pull request to publish the generated files under docs/."
+          else
+            echo "Documentation pull request already exists for $docs_branch"
+          fi
         else
           echo "No changes to commit"
         fi
