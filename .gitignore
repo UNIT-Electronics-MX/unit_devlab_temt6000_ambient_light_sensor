@@ -16,6 +16,9 @@ software/firmware
 software/book/*
 !software/book/.gitkeep
 
+# Generated Product Reference working files (released PDF/DOCX are copied to docs/)
+/build/
+
 # Temporary documentation files
 *.tmp
 *.temp

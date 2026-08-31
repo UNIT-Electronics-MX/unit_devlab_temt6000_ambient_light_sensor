@@ -1,0 +1,22 @@
+---
+title: "UNIT ATOM TEMT6000"
+subtitle: "I2C-Compatible Ambient Light Sensor — Hardware Revision V0.3.1"
+author: "UNIT Electronics"
+lang: en-US
+version: "1.1.0"
+date: "2026-08-31"
+toc-title: "Contents"
+
+# The order of this list determines the chapter order in the final document.
+chapters:
+  - tools/product-reference/chapters/00-description.md
+  - tools/product-reference/chapters/01-board.md
+  - tools/product-reference/chapters/02-ratings.md
+  - tools/product-reference/chapters/03-functional-overview.md
+  - tools/product-reference/chapters/04-connectors-pinouts.md
+  - tools/product-reference/chapters/05-board-operation.md
+  - tools/product-reference/chapters/06-mechanical.md
+  - tools/product-reference/chapters/07-company.md
+  - tools/product-reference/chapters/08-references.md
+  - tools/product-reference/chapters/09-appendix.md
+---
