@@ -94,12 +94,16 @@ jobs:
           git push --force origin "$docs_branch"
 
           if [[ -z "$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$docs_branch" --state open --json number --jq '.[0].number')" ]]; then
-            gh pr create \
+            pr_url="https://github.com/${GITHUB_REPOSITORY}/compare/main...${docs_branch}?expand=1"
+            if ! gh pr create \
               --repo "$GITHUB_REPOSITORY" \
               --base main \
               --head "$docs_branch" \
               --title "docs: update generated hardware documentation" \
-              --body "Generated from source commit ${GITHUB_SHA}. Merge this pull request to publish the generated files under docs/."
+              --body "Generated from source commit ${GITHUB_SHA}. Merge this pull request to publish the generated files under docs/."; then
+              echo "::warning title=Documentation PR not created::Open ${pr_url}"
+              echo "[Open the documentation pull request](${pr_url})" >> "$GITHUB_STEP_SUMMARY"
+            fi
           else
             echo "Documentation pull request already exists for $docs_branch"
           fi
