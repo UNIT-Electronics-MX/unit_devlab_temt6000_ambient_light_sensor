@@ -44,7 +44,7 @@ population and orientation, addresses, pull-ups, and bus loading.
 ### **Hardware Features**
 
 - TEMT6000 ambient-light phototransistor; fitted manufacturer/orderable part not confirmed
-- 32-bit Arm Cortex-M0+ controller, up to 32 MHz
+- 32-bit Arm Cortex-M0+ controller using its internal HSI at up to 24 MHz; no external oscillator is used
 - Nominal 3.3 V and 5 V operation; controller upper operating limit 5.5 V
 - 7-bit I2C slave operation from 100 kHz through 400 kHz
 - Qwiic `GND`, `VCC`, `SDA`, and `SCL` routing

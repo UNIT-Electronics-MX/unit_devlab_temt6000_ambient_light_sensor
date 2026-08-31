@@ -22,7 +22,7 @@ same command/STOP/read transaction model and identity sequence.
 | Factory 7-bit address | `0x20` |
 | Configurable address range | `0x08..0x77` |
 | I2C clock | 100 kHz to 400 kHz; examples use 400 kHz |
-| Controller | PY32F003, 32-bit Arm Cortex-M0+, up to 32 MHz |
+| Controller | PY32F003, 32-bit Arm Cortex-M0+; internal HSI at up to 24 MHz for this application; no external HSE oscillator |
 | Published controller supply range | 2.0–5.5 V, using the conservative x7 voltage limit; fitted suffix not asserted |
 | Controller bus pins | `PB6/SCL`, `PA10/SDA` |
 | Command/parameter size | One byte per write transaction |

@@ -44,7 +44,7 @@ uses the x7 range of 2.0–5.5 V as conservative voltage guidance.
 
 | Feature | Controller capability |
 |---|---|
-| CPU | 32-bit Arm Cortex-M0+, up to 32 MHz |
+| CPU and application clock | 32-bit Arm Cortex-M0+; internal HSI at up to 24 MHz; external HSE oscillator not used |
 | Memory | Up to 64 KB Flash and up to 8 KB SRAM |
 | Published operating voltage | 2.0–5.5 V, conservative x7 range |
 | ADC | One 12-bit ADC, up to 10 external channels, conversion range `0..VCC` |

@@ -19,7 +19,7 @@ sensor manufacturer and exact orderable suffix have not been confirmed.
 | Board ecosystem | DevLab |
 | Product family | Atom |
 | Optical sensor | TEMT6000; fitted manufacturer/orderable part not confirmed |
-| Interface controller | PY32F003, 32-bit Arm Cortex-M0+, up to 32 MHz |
+| Interface controller | PY32F003, 32-bit Arm Cortex-M0+; 24 MHz internal HSI application clock, no external oscillator |
 | Host interfaces | Qwiic I2C and direct analog `SIG` |
 | Nominal module supply | 3.3 V or 5 V; controller upper operating limit is 5.5 V |
 | I2C operation | Factory address `0x20`; 7-bit slave, 100 kHz to 400 kHz |

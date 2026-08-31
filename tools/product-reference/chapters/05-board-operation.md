@@ -33,35 +33,24 @@ Low-level scanner sketches are
 and
 [`software/examples/i2c/micropython/i2c_scan.py`](software/examples/i2c/micropython/i2c_scan.py).
 
-### **5.2 DDP Measurement Transaction**
+### **5.2 Application 1: Read Ambient-Light Data**
 
-DDP uses command transactions, not a memory-mapped register interface. For
-each command, the master writes the command byte and issues STOP, waits 2 to
-5 ms, then starts a separate read of the exact response length. Multi-byte
-integers are little endian. A read does not start conversion; it returns the
-latest background sample.
+1. Initialize I2C at 100 kHz or 400 kHz using 7-bit address `0x20`.
+2. Run the Chapter 3 discovery sequence and accept only DDP major 1 with
+   Device ID `0x0102`.
+3. Write `TEMT6000_RAW` (`0x80`), issue STOP, wait 5 ms, and read exactly two
+   bytes.
+4. Decode `raw = response[0] | (response[1] << 8)` and reject values above
+   `4095`.
+5. Repeat no faster than the approximately 20 ms background update interval
+   when a new sample is required.
 
-The mandatory discovery order is `GET_PROTOCOL` (`0x04`), `GET_DEVICE_ID`
-(`0x00`), `GET_FIRMWARE_VERSION` (`0x01`), `GET_HARDWARE_VERSION` (`0x02`),
-and `GET_CAPABILITIES` (`0x03`). Only protocol major 1 and Device ID `0x0102`
-identify this profile. The measurement command `TEMT6000_RAW` (`0x80`) returns
-two bytes: `raw = response[0] | (response[1] << 8)`, with valid ADC codes from
-0 through 4095.
+`READ_ADC0` (`0x60`) may replace `TEMT6000_RAW`; both access the same published
+`PA2/ADC0` sample. The value is an uncalibrated ADC code, not lux. Convert to
+lux only after calibration against a reference meter in the final optical and
+mechanical installation.
 
-The current responses are Device ID `[0x02, 0x01]` (little-endian `0x0102`),
-protocol/firmware/hardware `[0x01, 0x00]` (major 1, minor 0), and capabilities
-`[0xBB, 0x01, 0x00, 0x00]` (little-endian `0x000001BB`). A library should
-validate these values at startup, cache them, and repeat discovery after reset,
-address change, or bus recovery.
-
-The byte `0x01` is context-dependent, not a universal status code. It is the
-`GET_FIRMWARE_VERSION` command when written as a command; version major 1 in
-`[0x01, 0x00]`; the high byte of Device ID `0x0102` in `[0x02, 0x01]`; a
-capability-bitmap byte in `[0xBB, 0x01, 0x00, 0x00]`; logical HIGH in a
-`READ_GPIO0` response; and “address loaded from Flash” in a `GET_I2C_STATUS`
-response. Interpret it only under the issuing command and expected length.
-
-### **5.3 Address, Indicator, and Averaged Capture** {.section-page}
+### **5.3 Application 2: Change the I2C Address** {.section-page}
 
 The common DDP block provides `GET_I2C_ADDR` (`0x20`), `SET_I2C_ADDR` (`0x21`),
 `SAVE_CONFIG` (`0x22`), `RESET_FACTORY` (`0x23`), and `GET_I2C_STATUS` (`0x24`).
@@ -74,7 +63,7 @@ the final ACK is consumed. Wait about 300 ms and identify `0x0102` at the new
 address. `SAVE_CONFIG` is currently idempotent. Factory restore returns ACK low
 `0xE` but requires a separate reset before address `0x20` becomes active.
 
-### **5.4 Averaged Capture**
+### **5.4 Application 3: Averaged Capture**
 
 The controller updates ADC0 in the background about every 20 ms and publishes a
 rounded circular-buffer mean. `GET_ADC_AVERAGING` (`0x63`) returns 1, 4, 8, 16,
@@ -83,14 +72,14 @@ persists to Flash. Read before writing, and wait `N × 20 ms` for a full window.
 Recommended values are 8 for UI/general automation and 16 for stable ambient
 measurement. Do not poll faster than 20 ms expecting a new value.
 
-### **5.5 Built-in Indicator**
+### **5.5 Application 4: Built-in Indicator**
 
 Controller `PB5/BUILTIN` uses the relay-compatible commands: `RELAY_OFF`
 (`0xA0`), `RELAY_ON` (`0xA1`), and non-blocking `RELAY_TOGGLE` (`0xA2`). It is
 not logical GPIO0, and `WRITE_GPIO0/1` are unsupported. Pulse time is configured
 with `SET_TOGGLE_TIME` (`0xA3`) in `1..40` units of 25 ms.
 
-### **5.6 Direct Analog Bring-up** {.section-page}
+### **5.6 Application 5: Direct Analog Bring-up** {.section-page}
 
 1. Leave the I2C/service pins undriven and configure a host ADC as a
    high-impedance input.
@@ -106,7 +95,7 @@ from the I2C clients. Their voltage calculations require
 V0.3.1 measurement because the only available schematic describes legacy
 V0.0.1 hardware.
 
-### **5.7 Modifying the I2C Bridge**
+### **5.7 Service Operation: Modifying the I2C Bridge**
 
 Do not cut the bridge as a first troubleshooting step. First verify power,
 connector order, pull-ups, bus ownership, and scan timing. If analog-only
