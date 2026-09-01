@@ -12,7 +12,7 @@ observable firmware behavior documented below are the released interface.
 
 ### **3.1 Functional Block Diagram** {.section-page}
 
-![](tools/product-reference/assets/functional-block-diagram.png){width=7.1in}
+![](tools/product-reference/assets/block_diagram.png){width=7.1in}
 
 **Figure 3.1 — Functional signal and control paths.** The direct `SIG` branch
 and controller `PA2` ADC observe the sensor path. Firmware averages the sample

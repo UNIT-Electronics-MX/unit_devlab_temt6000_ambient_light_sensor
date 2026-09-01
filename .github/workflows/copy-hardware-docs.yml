@@ -101,8 +101,13 @@ jobs:
               --head "$docs_branch" \
               --title "docs: update generated hardware documentation" \
               --body "Generated from source commit ${GITHUB_SHA}. Merge this pull request to publish the generated files under docs/."; then
-              echo "::warning title=Documentation PR not created::Open ${pr_url}"
-              echo "[Open the documentation pull request](${pr_url})" >> "$GITHUB_STEP_SUMMARY"
+              echo "::warning title=Documentation PR not created::The repository does not allow GitHub Actions to create pull requests. Open ${pr_url}"
+              {
+                echo "### Documentation branch published"
+                echo
+                echo "GitHub Actions could not create the pull request because of repository policy."
+                echo "[Open the documentation pull request](${pr_url})"
+              } >> "$GITHUB_STEP_SUMMARY"
             fi
           else
             echo "Documentation pull request already exists for $docs_branch"
