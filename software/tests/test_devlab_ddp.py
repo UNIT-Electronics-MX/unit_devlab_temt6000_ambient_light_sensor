@@ -32,7 +32,7 @@ def identity_steps(address, device_id=ddp.DEVICE_TEMT6000, protocol=(1, 0)):
         )
         + command_steps(address, ddp.CMD_GET_FIRMWARE_VERSION, (1, 2))
         + command_steps(address, ddp.CMD_GET_HARDWARE_VERSION, (3, 4))
-        + command_steps(address, ddp.CMD_GET_CAPABILITIES, (0xBB, 0x01, 0, 0))
+        + command_steps(address, ddp.CMD_GET_CAPABILITIES, (0xB9, 0x01, 0, 0))
     )
 
 
@@ -114,7 +114,7 @@ class DevLabDDPTests(unittest.TestCase):
         self.assertEqual(info.protocol, (1, 0))
         self.assertEqual(info.firmware, (1, 2))
         self.assertEqual(info.hardware, (3, 4))
-        self.assertEqual(info.capabilities, 0x000001BB)
+        self.assertEqual(info.capabilities, 0x000001B9)
         self.assertTrue(info.has_capability(ddp.DDP_CAP_ANALOG_INPUT))
         self.assertIn("id=0x0102", ddp.format_device_info(info, 0x0102))
         bus.assert_done()

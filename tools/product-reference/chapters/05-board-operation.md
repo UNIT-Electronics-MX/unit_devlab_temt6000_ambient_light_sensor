@@ -15,7 +15,7 @@ identity and measurement reads, and direct analog observation.
    to SCL. Start at factory 7-bit address `0x20`, or scan if it was changed.
 5. Record the active address, protocol, firmware, hardware, and capability
    values reported during discovery.
-6. Verify protocol/firmware/hardware 1.0 and capabilities `0x000001BB`, then
+6. Verify protocol/firmware/hardware 1.0 and capabilities `0x000001B9`, then
    read either `READ_ADC0` (`0x60`) or equivalent `TEMT6000_RAW` (`0x80`).
 7. Use a logic analyzer to capture start, address, acknowledge, STOP, and read
    timing
@@ -76,8 +76,8 @@ measurement. Do not poll faster than 20 ms expecting a new value.
 
 Controller `PB5/BUILTIN` uses the relay-compatible commands: `RELAY_OFF`
 (`0xA0`), `RELAY_ON` (`0xA1`), and non-blocking `RELAY_TOGGLE` (`0xA2`). It is
-not logical GPIO0, and `WRITE_GPIO0/1` are unsupported. Pulse time is configured
-with `SET_TOGGLE_TIME` (`0xA3`) in `1..40` units of 25 ms.
+not a digital GPIO signal, and the digital-I/O commands are unsupported. Pulse
+time is configured with `SET_TOGGLE_TIME` (`0xA3`) in `1..40` units of 25 ms.
 
 ### **5.6 Application 5: Direct Analog Bring-up** {.section-page}
 
@@ -92,7 +92,7 @@ with `SET_TOGGLE_TIME` (`0xA3`) in `1..40` units of 25 ms.
 
 The analog examples remain available under `software/examples/adc/`, separate
 from the I2C clients. Their voltage calculations require
-V0.3.1 measurement because the only available schematic describes legacy
+measurement because the only available schematic describes legacy
 V0.0.1 hardware.
 
 ### **5.7 Service Operation: Modifying the I2C Bridge**
@@ -112,5 +112,5 @@ repowering. Restoring the bridge requires controlled solder rework.
 | Address found but rejected | Verify DDP major 1, Device ID `0x0102`, exact response lengths, and possible address collision |
 | DDP identity succeeds but measurement fails | Check `ANALOG_INPUT`/`SENSOR_DATA`, 5 ms delay, exact length, byte order, and 12-bit range |
 | Direct `SIG` always zero/full scale | Supply, ADC range, contact order, optical obstruction, current-board transfer function |
-| Built-in LED unexpected | Use relay-compatible commands for `PB5`; `WRITE_GPIO0/1` are unsupported |
+| Built-in LED unexpected | Use relay-compatible commands for `PB5`; digital-I/O commands are unsupported |
 | Lux result inaccurate | Sensor spread, source spectrum, geometry, enclosure, temperature, ADC and calibration |

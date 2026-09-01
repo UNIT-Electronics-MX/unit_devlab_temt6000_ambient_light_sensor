@@ -30,7 +30,7 @@ SWD, indicators, or I2C disable bridge.
 ### **9.3 Required Technical Releases**
 
 - V0.3.1 schematic and bill of materials
-- Exact controller memory/package option, released firmware image, and update procedure
+- Exact controller package/ordering suffix, released firmware image, and update procedure
 - Exact oscillator/timing tolerances and uniform future DDP status behavior
 - Complete-module supply/logic absolute-maximum ratings and current consumption
 - Pull-up values and bus-loading limits
@@ -53,9 +53,9 @@ SWD, indicators, or I2C disable bridge.
   controlled contact numbering are not supplied.
 - Earlier examples treated the sensor as a digital threshold input. The sensor
   signal is analog; I2C operation is provided by the new onboard controller.
-- Current firmware maps `PA2` to `ADC0`, `PA4` to read-only `GPIO0`, and `PB5`
-  to the relay-compatible actuator block. Digital output commands `0x42/0x43`
-  are not implemented; exposed `PA0`/`PA1` remain unassigned.
+- Current firmware maps `PA2` to `ADC0` and `PB5` to the relay-compatible
+  actuator block. Digital-I/O commands `0x40..0x43` are not implemented;
+  exposed `PA0`/`PA1` remain unassigned.
 
 ### **9.5 Current Firmware Limitations**
 

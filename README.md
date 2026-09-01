@@ -19,13 +19,13 @@ sensor manufacturer and exact orderable suffix have not been confirmed.
 | Board ecosystem | DevLab |
 | Product family | Atom |
 | Optical sensor | TEMT6000; fitted manufacturer/orderable part not confirmed |
-| Interface controller | PY32F003, 32-bit Arm Cortex-M0+; 24 MHz internal HSI application clock, no external oscillator |
+| Interface controller | PY32F003, 32-bit Arm Cortex-M0+; 16 KB Flash, 2 KB SRAM, 24 MHz internal HSI application clock, no external oscillator |
 | Host interfaces | Qwiic I2C and direct analog `SIG` |
 | Nominal module supply | 3.3 V or 5 V; controller upper operating limit is 5.5 V |
 | I2C operation | Factory address `0x20`; 7-bit slave, 100 kHz to 400 kHz |
 | Qwiic signals | `GND`, `VCC`, `SDA/SWDIO`, `SCL/SWCLK`; debug aliases share the same physical port |
 | Direct contacts | `VCC`, `GND`, `SIG` |
-| Internal controller mapping | `PA2` sensor ADC, `PA4` digital input, `PB5` built-in actuator, `PB6/SCL/SWCLK`, `PA10/SDA/SWDIO` |
+| Internal controller mapping | `PA2` sensor ADC, `PB5` built-in actuator, `PB6/SCL/SWCLK`, `PA10/SDA/SWDIO` |
 | Expansion/service | Reserved `PA0`/`PA1`; reset and shared-port SWD are factory-only functions |
 | Indicators | Power LED and firmware-controlled `BUILTIN` LED |
 | Configuration | Solder bridge can be cut to disable I2C |
@@ -38,7 +38,7 @@ profile uses Device ID `0x0102` and command `TEMT6000_RAW` (`0x80`) to return a
 12-bit ADC sample (`0` to `4095`) in an unsigned 16-bit little-endian response.
 Clients discover the active I2C address and verify identity, protocol version,
 firmware, hardware, and capabilities at runtime. The current controller firmware
-reports firmware 1.0, hardware 1.0, and capabilities `0x000001BB`. It supports
+reports firmware 1.0, hardware 1.0, and capabilities `0x000001B9`. It supports
 background ADC averaging over 1, 4, 8, 16, or 24 samples. The V0.3.1 schematic
 and complete module electrical limits remain pending.
 

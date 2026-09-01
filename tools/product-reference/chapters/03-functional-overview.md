@@ -6,7 +6,7 @@ DDP access. The controller uses its internal 24 MHz clock; this application
 does not use an external oscillator. Controller output `PB5` drives the
 `BUILTIN` LED.
 
-The missing V0.3.1 schematic must still confirm the passive sensor circuitry
+The missing schematic must still confirm the passive sensor circuitry
 and complete module electrical characteristics. The logical associations and
 observable firmware behavior documented below are the released interface.
 
@@ -24,6 +24,7 @@ application clock; no HSE crystal or external clock is used.
 | Property | Application configuration | Functional consequence |
 |---|---|---|
 | Controller core | 32-bit Arm Cortex-M0+ | Executes acquisition, DDP, configuration, and indicator control |
+| Controller memory | 16 KB Flash and 2 KB SRAM | Memory configuration for this module |
 | Maximum application clock | 24 MHz | Maximum clock used and documented for this product firmware |
 | System-clock source | Internal high-speed oscillator (`HSI`) | Self-clocked controller operation |
 | External high-speed clock (`HSE`) | Not used | No external oscillator or crystal is required by this application |
@@ -64,11 +65,10 @@ physical resource and command address.
 | Device identity | Firmware constant | `0x00` | Device ID `0x0102` |
 | Firmware version | Firmware metadata | `0x01` | Version 1.0 |
 | Hardware version | Product profile | `0x02` | Version 1.0 |
-| Capabilities | Firmware feature bitmap | `0x03` | `0x000001BB` |
+| Capabilities | Firmware feature bitmap | `0x03` | `0x000001B9` |
 | Protocol version | DDP implementation | `0x04` | DDP 1.0 |
 | Active I2C address | I2C slave configuration | `0x20` | Factory `0x20`; configurable `0x08..0x77` |
 | Persistent configuration | Internal Flash | `0x21..0x24`, `0x62`, `0xA3` | Address, averaging, and toggle time |
-| `GPIO0` | Controller `PA4` input | `0x40` | Logical LOW/HIGH |
 | `ADC0` | TEMT6000 signal on controller `PA2` | `0x60` | Unsigned 12-bit ADC code |
 | ADC averaging | Circular sample buffer | `0x62`, `0x63` | 1, 4, 8, 16, or 24 samples |
 | TEMT6000 sensor data | Same published `PA2/ADC0` sample | `0x80` | Same two-byte response as `0x60` |
@@ -105,7 +105,7 @@ in the same I2C write transaction.
 |---:|---|---|
 | `0x00..0x1F` Device information | `0x00..0x04` | Identity and discovery registers implemented |
 | `0x20..0x3F` Configuration | `0x20..0x24` | I2C address and persistent configuration implemented |
-| `0x40..0x5F` Digital I/O | `0x40` | `GPIO0/PA4` input implemented; `0x41..0x43` unsupported |
+| `0x40..0x5F` Digital I/O | None | Not implemented on this module |
 | `0x60..0x7F` Analog input | `0x60`, `0x62`, `0x63` | `ADC0/PA2` and averaging implemented; `0x61` unsupported |
 | `0x80..0x9F` Sensor data | `0x80` | TEMT6000 raw sample implemented |
 | `0xA0..0xBF` Actuators | `0xA0..0xA4` | `PB5/BUILTIN` indicator control implemented |
@@ -129,7 +129,7 @@ then reads its acknowledgement or result.
 | `0x00` | `GET_DEVICE_ID` | R | `[0x02, 0x01]` | Device ID `0x0102` |
 | `0x01` | `GET_FIRMWARE_VERSION` | R | `[0x01, 0x00]` | Firmware major 1, minor 0 |
 | `0x02` | `GET_HARDWARE_VERSION` | R | `[0x01, 0x00]` | Hardware major 1, minor 0 |
-| `0x03` | `GET_CAPABILITIES` | R | `[0xBB, 0x01, 0x00, 0x00]` | Little-endian bitmap `0x000001BB` |
+| `0x03` | `GET_CAPABILITIES` | R | `[0xB9, 0x01, 0x00, 0x00]` | Little-endian bitmap `0x000001B9` |
 | `0x04` | `GET_PROTOCOL` | R | `[0x01, 0x00]` | DDP major 1, minor 0 |
 
 Discovery order is `0x04`, `0x00`, `0x01`, `0x02`, then `0x03`. A host must
@@ -150,14 +150,13 @@ identify the product.
 
 | Address | Symbol | Access | Parameter or response | Physical association |
 |---:|---|:---:|---|---|
-| `0x40` | `READ_GPIO0` | R | `0x00` LOW or `0x01` HIGH | `PA4` read-only input |
 | `0x60` | `READ_ADC0` | R | `[LSB, MSB]`, valid code `0..4095` | Latest `PA2` sample |
 | `0x62` | `SET_ADC_AVERAGING` | W | Staged `1`, `4`, `8`, `16`, or `24`; ACK low `0xC` | Persistent averaging depth |
 | `0x63` | `GET_ADC_AVERAGING` | R | One byte: `1`, `4`, `8`, `16`, or `24` | Active averaging depth |
 | `0x80` | `TEMT6000_RAW` | R | `[LSB, MSB]`, valid code `0..4095` | Same published sample as `0x60` |
 
-`READ_GPIO1` (`0x41`), `WRITE_GPIO0/1` (`0x42/0x43`), and `READ_ADC1`
-(`0x61`) are unsupported.
+`READ_GPIO0/1` (`0x40/0x41`), `WRITE_GPIO0/1` (`0x42/0x43`), and
+`READ_ADC1` (`0x61`) are unsupported.
 
 #### **3.7.4 Indicator and System Registers**
 
@@ -176,14 +175,13 @@ identify the product.
 
 Response bytes have meaning only within the selected command and expected
 length. For example, `0x01` may mean firmware major 1, hardware major 1,
-protocol major 1, the high byte of Device ID `0x0102`, logical HIGH from
-`READ_GPIO0`, or “address loaded from Flash” from `GET_I2C_STATUS`. It is not a
-universal success code.
+protocol major 1, the high byte of Device ID `0x0102`, or “address loaded from
+Flash” from `GET_I2C_STATUS`. It is not a universal success code.
 
 ### **3.9 Direct Analog Mode**
 
 The top-side `SIG` contact provides direct sensor access for ADC experiments,
-production test, or calibration. Its V0.3.1 transfer function and safe input
+production test, or calibration. Its transfer function and safe input
 range are not documented. Configure the host as a high-impedance analog input
 and measure the actual range before connecting a lower-voltage ADC.
 

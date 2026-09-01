@@ -18,11 +18,11 @@ same command/STOP/read transaction model and identity sequence.
 | Protocol version | 1.0 (major/minor bytes `[0x01, 0x00]`) |
 | Firmware version | 1.0 (major/minor bytes `[0x01, 0x00]`) |
 | Hardware version | 1.0 (major/minor bytes `[0x01, 0x00]`) |
-| Capabilities | `0x000001BB` (little-endian bytes `[0xBB, 0x01, 0x00, 0x00]`) |
+| Capabilities | `0x000001B9` (little-endian bytes `[0xB9, 0x01, 0x00, 0x00]`) |
 | Factory 7-bit address | `0x20` |
 | Configurable address range | `0x08..0x77` |
 | I2C clock | 100 kHz to 400 kHz; examples use 400 kHz |
-| Controller | PY32F003, 32-bit Arm Cortex-M0+; internal HSI at up to 24 MHz for this application; no external HSE oscillator |
+| Controller | PY32F003, 32-bit Arm Cortex-M0+; 16 KB Flash, 2 KB SRAM; internal HSI at up to 24 MHz for this application; no external HSE oscillator |
 | Published controller supply range | 2.0–5.5 V, using the conservative x7 voltage limit; fitted suffix not asserted |
 | Controller bus pins | `PB6/SCL`, `PA10/SDA` |
 | Command/parameter size | One byte per write transaction |
@@ -31,10 +31,10 @@ same command/STOP/read transaction model and identity sequence.
 | Pending setter timeout | 250 ms |
 | ADC format | 12-bit unsigned, `0..4095`, little-endian `uint16` |
 
-The capability bitmap announces `I2C_CONFIG`, `DIGITAL_INPUT`,
-`ANALOG_INPUT`, `SENSOR_DATA`, `RELAY`, `WATCHDOG`, and
-`PERSISTENT_CONFIG`. It does **not** announce `DIGITAL_OUTPUT`; commands
-`WRITE_GPIO0/1` (`0x42/0x43`) are not implemented.
+The capability bitmap announces `I2C_CONFIG`, `ANALOG_INPUT`, `SENSOR_DATA`,
+`RELAY`, `WATCHDOG`, and `PERSISTENT_CONFIG`. It does not announce digital I/O;
+commands `READ_GPIO0/1` (`0x40/0x41`) and `WRITE_GPIO0/1` (`0x42/0x43`) are not
+implemented.
 
 ### Meaning of byte `0x01`
 
@@ -45,9 +45,8 @@ response length, and field encoding. In this profile:
 - in version bytes `[0x01, 0x00]`, it is major version 1;
 - in Device ID bytes `[0x02, 0x01]`, it is the high byte of little-endian
   `0x0102`;
-- in capability bytes `[0xBB, 0x01, 0x00, 0x00]`, it is byte 1 of the
-  little-endian bitmap `0x000001BB`;
-- as the `READ_GPIO0` response, `0x01` means logical HIGH on `PA4`;
+- in capability bytes `[0xB9, 0x01, 0x00, 0x00]`, it is byte 1 of the
+  little-endian bitmap `0x000001B9`;
 - as the low nibble of a `RELAY_ON` acknowledgement, `0x1` means that driving
   `PB5/BUILTIN` HIGH was accepted; and
 - as the `GET_I2C_STATUS` response, `0x01` means the active address was loaded
@@ -60,7 +59,6 @@ expected response format.
 
 | Logical resource | Physical resource | Implemented command |
 |---|---|---|
-| `GPIO0` input | Controller `PA4` | `READ_GPIO0` (`0x40`) |
 | `ADC0` | TEMT6000 sampled on controller `PA2` | `READ_ADC0` (`0x60`) |
 | TEMT6000 sensor data | Same published ADC sample | `TEMT6000_RAW` (`0x80`) |
 | Relay-compatible actuator | Controller `PB5` / `BUILTIN` | `RELAY_OFF/ON/TOGGLE` (`0xA0..0xA2`) |
@@ -91,10 +89,10 @@ host -> [SLA+W, value] -> STOP       (within 250 ms)
 wait, then read one-byte final ACK
 ```
 
-The acknowledgement is `(PA4 ? 0xF0 : 0x00) | response_code`. Validate only
-its low nibble for staged operations; never mask ADC data, addresses, versions,
-or averaging values. If a read is too early or too long, transport padding can
-be `0xFF`, so clients must validate length, identity, and value range.
+Validate the documented low nibble of each staged-operation acknowledgement;
+never mask ADC data, addresses, versions, or averaging values. If a read is too
+early or too long, transport padding can be `0xFF`, so clients must validate
+length, identity, and value range.
 
 ## Mandatory discovery
 
@@ -104,7 +102,7 @@ be `0xFF`, so clients must validate length, identity, and value range.
 | 2 | `GET_DEVICE_ID` | `0x00` | `[0x02, 0x01]` = little-endian `0x0102` |
 | 3 | `GET_FIRMWARE_VERSION` | `0x01` | `[0x01, 0x00]` = major 1, minor 0 |
 | 4 | `GET_HARDWARE_VERSION` | `0x02` | `[0x01, 0x00]` = major 1, minor 0 |
-| 5 | `GET_CAPABILITIES` | `0x03` | `[0xBB, 0x01, 0x00, 0x00]` = little-endian `0x000001BB` |
+| 5 | `GET_CAPABILITIES` | `0x03` | `[0xB9, 0x01, 0x00, 0x00]` = little-endian `0x000001B9` |
 
 Cache identity after `begin()` rather than repeating all five reads before
 every sample. Repeat discovery after reset, address change, or bus recovery.
@@ -113,7 +111,6 @@ every sample. Repeat discovery after reset, address change, or bus recovery.
 
 | Command | Code | Response/effect |
 |---|---:|---|
-| `READ_GPIO0` | `0x40` | `0x00` = LOW or `0x01` = HIGH on `PA4` |
 | `READ_ADC0` | `0x60` | ADC `[LSB, MSB]` |
 | `SET_ADC_AVERAGING` | `0x62` | Staged write; ACK low nibble `0xC` |
 | `GET_ADC_AVERAGING` | `0x63` | `1`, `4`, `8`, `16`, or `24` |
@@ -124,8 +121,8 @@ every sample. Repeat discovery after reset, address change, or bus recovery.
 | `SET_TOGGLE_TIME` | `0xA3` | Staged write `1..40`; ACK low `0x7` |
 | `GET_TOGGLE_TIME` | `0xA4` | `1..40`, in units of 25 ms |
 
-`READ_GPIO1`, `WRITE_GPIO0/1`, and `READ_ADC1` are not implemented and return
-the packed unknown-command code with low nibble `0xB`.
+`READ_GPIO0/1`, `WRITE_GPIO0/1`, and `READ_ADC1` are not implemented and
+return the packed unknown-command code with low nibble `0xB`.
 
 ## ADC acquisition and averaging
 

@@ -11,7 +11,7 @@ part fitted to the module.
 The Product Reference documents the current PY32F003 firmware profile: factory
 address `0x20`, internal HSI operation at up to 24 MHz without an external
 oscillator, DDP identity `0x0102`, versions 1.0, capabilities
-`0x000001BB`, command timing, persistent configuration, ADC averaging, and the
+`0x000001B9`, command timing, persistent configuration, ADC averaging, and the
 `TEMT6000_RAW` (`0x80`) 12-bit response. It keeps the current-revision
 schematic and complete module electrical limits as open requirements.
 

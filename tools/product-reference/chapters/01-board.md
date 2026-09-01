@@ -1,6 +1,6 @@
 ## **1 The Board**
 
-The V0.3.1 design supports two host paths. A Qwiic-capable controller can attach
+The design supports two host paths. A Qwiic-capable controller can attach
 through the I2C positions, while an ADC-capable host or test instrument can
 sample the exposed `SIG` contact directly. Factory debug reuses the same
 controller pins and physical port as I2C; it is not a separate user interface.
@@ -27,9 +27,9 @@ No accessory bundle is specified. Typical integration items are:
 | Product family | Atom |
 | Product type | I2C-compatible and direct-analog ambient-light module |
 | Optical component | TEMT6000; fitted manufacturer/orderable part not confirmed |
-| Interface controller | 32-bit Arm Cortex-M0+; fitted suffix not asserted; published voltage guidance uses the x7 range |
+| Interface controller | 32-bit Arm Cortex-M0+; 16 KB Flash and 2 KB SRAM; fitted suffix not asserted |
 | Manufacturer Part Number (MPN) | UE0098 |
-| Current board artwork | V0.3.1 |
+| Current board artwork | |
 | Available schematic | Legacy analog hardware V0.0.1 only |
 | Product Reference | Version 1.1.0 |
 
@@ -41,13 +41,13 @@ independently.
 | Assembly | Function | Source status |
 |---|---|---|
 | TEMT6000 sensor | Converts visible light to photocurrent | Functional identity shown by board/pinout artwork; manufacturer and exact suffix unconfirmed |
-| Interface controller | Samples or processes the sensor for I2C access | 32-bit Arm Cortex-M0+; fitted suffix not asserted; published voltage guidance uses the x7 range |
+| Interface controller | Samples or processes the sensor for I2C access | 32-bit Arm Cortex-M0+; 16 KB Flash and 2 KB SRAM; fitted suffix not asserted; published voltage guidance uses the x7 range |
 | Qwiic positions A and B | I2C power and bus access | Shown as optional horizontal JST connectors |
 | Direct contacts | `VCC`, `GND`, and analog `SIG` | Identified on the top view |
 | I2C disable bridge | Disconnects or disables I2C when cut | Function identified; exact circuit unspecified |
 | Power and built-in LEDs | Power and firmware indication | `BUILTIN` is driven by controller `PB5` |
 | PA0/PA1 and service functions | Reserved GPIO and factory reset/debug | `PA0`/`PA1` have no current application; SWD aliases share the I2C port |
-| Internal controller mapping | `PA2` ADC, `PA4` input, `PB5` built-in actuator, `PB6/SCL/SWCLK`, `PA10/SDA/SWDIO` | Current firmware/hardware mapping |
+| Internal controller mapping | `PA2` ADC, `PB5` built-in actuator, `PB6/SCL/SWCLK`, `PA10/SDA/SWDIO` | Current firmware/hardware mapping |
 
 ### **1.4 Board Views** {.section-page}
 

@@ -11,7 +11,7 @@ constexpr uint8_t I2C_SDA_PIN = 6U;
 constexpr uint8_t I2C_SCL_PIN = 7U;
 #endif
 constexpr uint16_t DDP_ADC_MAX = 4095U;
-constexpr uint32_t CURRENT_CAPABILITIES = 0x000001BBUL;
+constexpr uint32_t CURRENT_CAPABILITIES = 0x000001B9UL;
 constexpr uint8_t EXPECTED_ADC_AVERAGING_ACK = 0x0CU;
 // Command-specific packed-ACK low nibbles; 0x01 means RELAY_ON accepted here.
 constexpr uint8_t EXPECTED_RELAY_OFF_ACK = 0x00U;

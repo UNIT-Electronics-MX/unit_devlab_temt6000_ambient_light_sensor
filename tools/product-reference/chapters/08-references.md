@@ -13,7 +13,7 @@
 | Local DDP device profile | [TEMT6000 DDP profile](https://github.com/UNIT-Electronics-MX/unit_devlab_temt600_ambient_light_sensor/blob/main/software/protocol/README.md) |
 | Canonical DDP definitions and Arduino library | [UNIT-Electronics-Labs/unit_devlab_ddp_library](https://github.com/UNIT-Electronics-Labs/unit_devlab_ddp_library) |
 | Comparative component page | [Vishay TEMT6000X01 — reference only](https://www.vishay.com/en/product/81579/) |
-| Comparative component datasheet | [Vishay document 81579 — reference only](https://www.vishay.com/docs/81579/temt6000.pdf) |
+| Comparative component datasheet | [Vishay Semiconductors, *TEMT6000X01 Ambient Light Sensor*, document 81579 — reference only](https://www.vishay.com/docs/81579/temt6000.pdf) |
 
 The released pinout and current board images define the visible interfaces.
 The legacy schematic defines only the earlier analog module. The Vishay

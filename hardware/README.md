@@ -60,13 +60,12 @@ DDP discovery, inspect capabilities, and read `TEMT6000_RAW` (`0x80`) for a
 12-bit ADC sample encoded as unsigned 16-bit little endian. The address can be
 read or changed with the common DDP I2C-configuration commands when the
 corresponding capability is advertised. The current firmware uses factory
-address `0x20`, firmware/hardware 1.0, and capability bitmap `0x000001BB`.
+address `0x20`, firmware/hardware 1.0, and capability bitmap `0x000001B9`.
 
 The TEMT6000 analog signal is sampled internally by the controller on `PA2`.
 It is mapped to logical `ADC0`: `READ_ADC0` (`0x60`) and `TEMT6000_RAW` (`0x80`)
-return the same published sample. `GPIO0` is the read-only state of controller
-`PA4`. Controller `PB5` drives `BUILTIN`; exposed `PA0` and `PA1` are currently
-unassigned.
+return the same published sample. Controller `PB5` drives `BUILTIN`; exposed
+`PA0` and `PA1` are currently unassigned.
 
 The module is a 7-bit I2C slave and supports bus clocks from 100 kHz through
 400 kHz. `PB5/BUILTIN` uses the relay-compatible commands `RELAY_OFF`,
@@ -75,12 +74,12 @@ The module is a 7-bit I2C slave and supports bus clocks from 100 kHz through
 
 ## PY32F003 Controller
 
-The onboard interface controller has a 32-bit Arm Cortex-M0+ core. This
-application runs at a maximum of 24 MHz from the internal high-speed oscillator
-(`HSI`) and does not use an external oscillator or crystal (`HSE`). It provides
-a 12-bit ADC whose input range is `0..VCC`, and an I2C peripheral supporting
-7-bit addressing at 100 kHz and 400 kHz. Procurement records do not confirm the
-fitted controller suffix. To
+The onboard interface controller has a 32-bit Arm Cortex-M0+ core with 16 KB
+of Flash and 2 KB of SRAM. This application runs at a maximum of 24 MHz from
+the internal high-speed oscillator (`HSI`) and does not use an external
+oscillator or crystal (`HSE`). It provides a 12-bit ADC whose input range is
+`0..VCC`, and an I2C peripheral supporting 7-bit addressing at 100 kHz and
+400 kHz. Procurement records do not confirm the fitted controller suffix. To
 publish one conservative voltage range, this product documentation adopts the
 x7 limit of 2.0 V to 5.5 V; this includes nominal 3.3 V and 5 V operation but
 does not identify the physical device as x7. No controller or module
