@@ -1,6 +1,6 @@
 # Hardware
 <div align="center">
-    <a href="./unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="./resources/v_3_1_0/Schematics_icon.jpg" width="450px" alt="Schematics"/><br/> Schematics</a>
+    <a href="./unit_sch_V_0_0_1_ue0098_TEMT6000.pdf"><img src="resources/Schematics_icon.jpg?raw=false" width="450px" alt="Schematics"/><br/> Schematics</a>
 </div>
 
 ---
@@ -61,7 +61,7 @@ El formato se mantendrá automáticamente en el PDF generado.
 ## 🔌 Pinout
 
 <div align="center">
-    <a href="./unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.pdf"><img src="./resources/pinout/v_0_3_1/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.png" width="500px"><br/>Pinout</a>
+    <a href="./unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.pdf"><img src="resources/unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.jpg" width="500px"><br/>Pinout</a>
     <br/><br/>
 
 </div>
