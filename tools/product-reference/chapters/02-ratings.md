@@ -15,7 +15,7 @@ does not identify the manufacturer or exact part fitted to the board.
 | I2C logic domain | Follows the actual bus pull-up rail | At 5 V, use a 5 V-tolerant host or bidirectional level translation |
 | I2C bus speed | 100 kHz to 400 kHz | Supported operating range |
 | I2C addressing | 7-bit slave | Valid configurable addresses are `0x08..0x77` |
-| Factory I2C address | `0x20` | Pass the 7-bit value, not wire byte `0x40` |
+| Factory I2C address | `0x20` (7-bit) | Use `0x20` in I²C libraries. `0x40` is the 8-bit write address, not the device address. |
 | Device protocol | DDP v1.0 | Command transaction followed by an exact-length read transaction |
 | Logical Device ID | `0x0102` | TEMT6000 identity; independent of I2C address |
 | Firmware / hardware | 1.0 / 1.0 | Current observable controller profile |
@@ -39,9 +39,7 @@ and current consumption still require the schematic and qualification.
 
 The supplied UE0102 reference manual identifies a PY32F003L24D6TR and publishes
 1.7–5.5 V and −40 to +85 °C for that separate development board. It does not
-establish which ordering suffix was procured for this UE0098 assembly. This
-Product Reference therefore does not identify the fitted ordering suffix; it
-uses the x7 range of 2.0–5.5 V as conservative voltage guidance.
+establish which ordering suffix was procured for this UE0098 assembly.
 
 | Feature | Controller capability |
 |---|---|

@@ -16,7 +16,7 @@ Edita los valores a continuación según necesites.
 El formato se mantendrá automáticamente en el PDF generado.
 -->
 
-### 🔌 Connectivity
+### Connectivity
 <!-- Edita las interfaces y conectores disponibles -->
 <div align=center>
 
@@ -29,7 +29,7 @@ El formato se mantendrá automáticamente en el PDF generado.
 </div>
 
 
-## ⚙️ Technical Specifications
+##  Technical Specifications
 
 <div align="center">
 
@@ -58,7 +58,7 @@ El formato se mantendrá automáticamente en el PDF generado.
 
 </div>
 
-## 🔌 Pinout
+## Pinout
 
 <div align="center">
     <a href="./unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.pdf"><img src="resources/unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.jpg" width="500px"><br/>Pinout</a>
@@ -78,7 +78,7 @@ El formato se mantendrá automáticamente en el PDF generado.
 
 </div>
 
-## 📃 Topology
+## Topology
 
 <div align="center">
 <a href="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png"><img src="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png" width="300px"><br/> Topology</a>
@@ -90,7 +90,7 @@ El formato se mantendrá automáticamente en el PDF generado.
 
 </div>
 
-## 📏 Dimensions
+## Dimensions
 
 <div align="center">
 <a href="./resources/unit_dimension_V_0_0_1_ue0098_TEMT6000.png"><img src="./resources/unit_dimension_V_0_0_1_ue0098_TEMT6000.png" width="500px"><br/> Dimensions</a>

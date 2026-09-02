@@ -1,22 +1,10 @@
 ## **Description**
 
-The UNIT ATOM TEMT6000 is an I2C-compatible ambient-light sensor module from
-UNIT Electronics, the company that creates and develops the DevLab board
-ecosystem. Atom is a product family within that ecosystem. Hardware V0.3.1
-combines a TEMT6000 visible-light phototransistor with an onboard interface
-controller, Qwiic I2C routing, and direct access to the sensor's analog
-signal. The fitted sensor manufacturer and exact orderable suffix have not
-been confirmed.
+The UNIT ATOM TEMT6000 is an ambient-light sensor module developed by UNIT Electronics as part of the DevLab ecosystem. It combines a TEMT6000 visible-light phototransistor with an onboard interface controller, providing both I²C communication and direct access to the sensor’s analog signal.
 
 ![](hardware/resources/v_3_1_0/unit_top_V_0_3_1_ue0098_temt6000.png){width=2.2in}
 
-The released pinout identifies two optional Qwiic connection positions, direct
-`VCC`/`GND`/`SIG` contacts, reserved `PA0` and `PA1` pads, factory-only reset
-and SWD functions multiplexed on the I2C port, power and built-in indicators,
-and a solder bridge that disables the
-I2C function when cut. Inside the controller, the sensor ADC input is `PA2`,
-`BUILTIN` is driven by `PB5`, and the I2C bus uses `PB6/SCL/SWCLK` and
-`PA10/SDA/SWDIO`.
+The board provides two alternative Qwiic connection positions, direct VCC, GND, and SIG contacts, reserved PA0 and PA1 pads, power and built-in status indicators, and a solder bridge for disabling the I²C interface. The controller reads the sensor through its PA2 ADC input. The built-in indicator is controlled through PB5, while the I²C interface uses PB6/SCL and PA10/SDA. These pins are also shared with the factory programming interface as SWCLK and SWDIO.
 
 ### **Applications**
 
@@ -47,8 +35,8 @@ documentation.
 
 ### **Hardware Features**
 
-- TEMT6000 ambient-light phototransistor; fitted manufacturer/orderable part not confirmed
-- 32-bit Arm Cortex-M0+ controller with 16 KB Flash and 2 KB SRAM, using its internal HSI at up to 24 MHz; no external oscillator is used
+- TEMT6000 ambient-light phototransistor
+- 32-bit Arm Cortex-M0+ controller with 16 KB Flash and 2 KB SRAM, using its internal HSI at up to 24 MHz
 - Nominal 3.3 V and 5 V operation; controller upper operating limit 5.5 V
 - 7-bit I2C slave operation from 100 kHz through 400 kHz
 - Qwiic `GND`, `VCC`, `SDA`, and `SCL` routing
@@ -64,11 +52,7 @@ The controller implements DevLab Device Protocol (DDP) v1.0. The TEMT6000
 profile is identified by Device ID `0x0102`; command `TEMT6000_RAW` (`0x80`)
 returns a 12-bit ADC sample in an unsigned 16-bit little-endian response. The
 current controller firmware reports factory address `0x20`, firmware/hardware 1.0,
-and capabilities `0x000001B9`. Procurement does not establish the fitted
-controller suffix, so the published controller voltage guidance uses the
-conservative x7 range without identifying the physical variant. The technical
-package does not provide the exact controller package or ordering suffix,
-current-revision schematic, or complete module electrical limits.
+and capabilities `0x000001B9`.
 
 `SWDIO` shares physical pin `PA10` with `SDA`, and `SWCLK` shares `PB6` with
 `SCL`; there is no separate SWD port and the two modes are mutually exclusive.

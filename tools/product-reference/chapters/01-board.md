@@ -26,7 +26,7 @@ No accessory bundle is specified. Typical integration items are:
 | Board ecosystem | DevLab |
 | Product family | Atom |
 | Product type | I2C-compatible and direct-analog ambient-light module |
-| Optical component | TEMT6000; fitted manufacturer/orderable part not confirmed |
+| Optical component | TEMT6000 |
 | Interface controller | 32-bit Arm Cortex-M0+; 16 KB Flash and 2 KB SRAM; fitted suffix not asserted |
 | Manufacturer Part Number (MPN) | UE0098 |
 | Current board artwork | |
