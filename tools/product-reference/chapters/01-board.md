@@ -41,7 +41,7 @@ independently.
 | Assembly | Function | Source status |
 |---|---|---|
 | TEMT6000 sensor | Converts visible light to photocurrent | Functional identity shown by board/pinout artwork; manufacturer and exact suffix unconfirmed |
-| Interface controller | Samples or processes the sensor for I2C access | 32-bit Arm Cortex-M0+; 16 KB Flash and 2 KB SRAM; fitted suffix not asserted; published voltage guidance uses the x7 range |
+| Interface controller | Samples or processes the sensor for I2C access | 32-bit Arm Cortex-M0+; 16 KB Flash and 2 KB SRAM; exact fitted variant not confirmed; conservative controller voltage guidance is 2.0–5.5 V |
 | Qwiic positions A and B | I2C power and bus access | Shown as optional horizontal JST connectors |
 | Direct contacts | `VCC`, `GND`, and analog `SIG` | Identified on the top view |
 | I2C disable bridge | Disconnects or disables I2C when cut | Function identified; exact circuit unspecified |

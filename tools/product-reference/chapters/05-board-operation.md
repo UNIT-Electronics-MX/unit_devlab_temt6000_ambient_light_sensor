@@ -1,116 +1,172 @@
 ## **5 Board Operation**
 
-The repository supports safe electrical bring-up through I2C scanning, DDP
-identity and measurement reads, and direct analog observation.
+This chapter shows how to verify one UNIT ATOM TEMT6000 and read its raw
+ambient-light value with Arduino. The example supports the Pulsar ESP32-C6 and
+Pulsar RP2350 host boards.
 
-### **5.1 I2C Bring-up** {.section-page}
+### **5.1 Required Hardware and Software** {.section-page}
 
-1. Inspect the board revision, connector population, and I2C bridge.
-2. With power off, select a nominal 3.3 V or 5 V supply and connect `GND`,
-   `VCC`, `SDA`, and `SCL` in the documented orientation. For 5 V operation,
-   verify host tolerance at the bus pull-up voltage or add level translation.
-3. Power from a current-limited source and check for unexpected heating.
-4. Select an I2C clock from 100 kHz through 400 kHz; maintained examples use
-   400 kHz. The ESP32 and MicroPython examples map host GPIO6 to SDA and GPIO7
-   to SCL. Start at factory 7-bit address `0x20`, or scan if it was changed.
-5. Record the active address, protocol, firmware, hardware, and capability
-   values reported during discovery.
-6. Verify protocol/firmware/hardware 1.0 and capabilities `0x000001B9`, then
-   read either `READ_ADC0` (`0x60`) or equivalent `TEMT6000_RAW` (`0x80`).
-7. Use a logic analyzer to capture start, address, acknowledge, STOP, and read
-   timing
-   if enumeration fails.
+- UNIT ATOM TEMT6000 module
+- Pulsar ESP32-C6 or Pulsar RP2350 development board
+- I2C connection for `VCC`, `GND`, `SDA`, and `SCL`
+- USB cable for programming and Serial Monitor access
+- Arduino IDE with the selected board package installed
+- `DevLab_TEMT6000` Arduino library
 
-The maintained DDP clients are
-[`software/examples/i2c/cpp_examples/ddp_temt6000/ddp_temt6000.ino`](software/examples/i2c/cpp_examples/ddp_temt6000/ddp_temt6000.ino)
-and
-[`software/examples/i2c/micropython/ddp_temt6000.py`](software/examples/i2c/micropython/ddp_temt6000.py).
-The MicroPython example imports the reusable
-[`software/examples/i2c/micropython/lib/devlab_ddp.py`](software/examples/i2c/micropython/lib/devlab_ddp.py)
-module, which is installed as `/lib/devlab_ddp.py` on the host.
-Low-level scanner sketches are
-[`software/examples/i2c/cpp_examples/i2c_scanner/i2c_scanner.ino`](software/examples/i2c/cpp_examples/i2c_scanner/i2c_scanner.ino)
-and
-[`software/examples/i2c/micropython/i2c_scan.py`](software/examples/i2c/micropython/i2c_scan.py).
+### **5.2 Library Installation**
 
-### **5.2 Application 1: Read Ambient-Light Data**
+1. Open **Tools > Manage Libraries** in Arduino IDE.
+2. Search for `DevLab_TEMT6000`.
+3. Select the current release and click **Install**.
+4. Allow Arduino IDE to install the `DevLabDDP` dependency when prompted.
 
-1. Initialize I2C at 100 kHz or 400 kHz using 7-bit address `0x20`.
-2. Run the Chapter 3 discovery sequence and accept only DDP major 1 with
-   Device ID `0x0102`.
-3. Write `TEMT6000_RAW` (`0x80`), issue STOP, wait 5 ms, and read exactly two
-   bytes.
-4. Decode `raw = response[0] | (response[1] << 8)` and reject values above
-   `4095`.
-5. Repeat no faster than the approximately 20 ms background update interval
-   when a new sample is required.
+![](tools/product-reference/assets/temt6000_library.png){width=2.8in}
 
-`READ_ADC0` (`0x60`) may replace `TEMT6000_RAW`; both access the same published
-`PA2/ADC0` sample. The value is an uncalibrated ADC code, not lux. Convert to
-lux only after calibration against a reference meter in the final optical and
-mechanical installation.
+**Figure 5.1 — DevLab_TEMT6000 in Arduino Library Manager.** The installed
+package provides the TEMT6000 examples and installs the DDP communication
+dependency used by the sketch below.
 
-### **5.3 Application 2: Change the I2C Address** {.section-page}
+### **5.3 I2C Connection and Example Settings** {.page-break}
 
-The common DDP block provides `GET_I2C_ADDR` (`0x20`), `SET_I2C_ADDR` (`0x21`),
-`SAVE_CONFIG` (`0x22`), `RESET_FACTORY` (`0x23`), and `GET_I2C_STATUS` (`0x24`).
-Factory address is `0x20`; a new value must be within `0x08..0x77`.
+Connect the module with power removed.
 
-Address change is a staged operation. Send `0x21`, wait/read ACK low nibble
-`0xD`, send the new one-byte value within 250 ms, wait about 100 ms, and read
-the final ACK at the old address. The setter saves Flash and reset follows when
-the final ACK is consumed. Wait about 300 ms and identify `0x0102` at the new
-address. `SAVE_CONFIG` is currently idempotent. Factory restore returns ACK low
-`0xE` but requires a separate reset before address `0x20` becomes active.
+![](tools/product-reference/assets/devlab_atom.png){width=5.8in}
 
-### **5.4 Application 3: Averaged Capture**
+**Figure 5.2 — Qwiic connection to a Pulsar ESP32-C6 host.** Align the
+connector with the orientation shown and verify `VCC`, `GND`, `SDA`, and `SCL`
+before applying power.
 
-The controller updates ADC0 in the background about every 20 ms and publishes a
-rounded circular-buffer mean. `GET_ADC_AVERAGING` (`0x63`) returns 1, 4, 8, 16,
-or 24. `SET_ADC_AVERAGING` (`0x62`) is staged with ACK low nibble `0xC` and
-persists to Flash. Read before writing, and wait `N × 20 ms` for a full window.
-Recommended values are 8 for UI/general automation and 16 for stable ambient
-measurement. Do not poll faster than 20 ms expecting a new value.
+| Module | Pulsar ESP32-C6 | Pulsar RP2350 | Function |
+|---|---:|---:|---|
+| `VCC` | 3.3 V or 5 V | 3.3 V or 5 V | Module supply |
+| `GND` | `GND` | `GND` | Common reference |
+| `SDA` | GPIO6 | GPIO24 | I2C data |
+| `SCL` | GPIO7 | GPIO25 | I2C clock |
 
-### **5.5 Application 4: Built-in Indicator**
+The pin numbers above match `singleSensor.ino`. Change `I2C_SDA` and
+`I2C_SCL` when the selected host board uses different I2C pins. At 5 V,
+confirm that the host accepts the bus pull-up voltage or use bidirectional
+level translation.
 
-Controller `PB5/BUILTIN` uses the relay-compatible commands: `RELAY_OFF`
-(`0xA0`), `RELAY_ON` (`0xA1`), and non-blocking `RELAY_TOGGLE` (`0xA2`). It is
-not a digital GPIO signal, and the digital-I/O commands are unsupported. Pulse
-time is configured with `SET_TOGGLE_TIME` (`0xA3`) in `1..40` units of 25 ms.
+The example uses the following settings:
 
-### **5.6 Application 5: Direct Analog Bring-up** {.section-page}
+| Constant | Default | Purpose |
+|---|---:|---|
+| `I2C_SDA` | GPIO6 on Pulsar ESP32-C6; GPIO24 on Pulsar RP2350 | Host SDA pin |
+| `I2C_SCL` | GPIO7 on Pulsar ESP32-C6; GPIO25 on Pulsar RP2350 | Host SCL pin |
+| `I2C_FREQ` | 400000 Hz | I2C clock |
+| `SENSOR_ADDRESS` | `0x20` | Factory 7-bit module address |
+| `READ_INTERVAL_MS` | 1000 ms | Time between printed readings |
 
-1. Leave the I2C/service pins undriven and configure a host ADC as a
-   high-impedance input.
-2. Connect the direct `GND`, `VCC`, and `SIG` contacts with power removed.
-3. Verify the actual `SIG` range using a multimeter before relying on the ADC;
-   the controller ADC conversion range is `0..VCC`.
-4. Compare covered and illuminated readings and check that the response is
-   repeatable.
-5. Calibrate against a reference meter for quantitative lux measurements.
+If the module address was changed previously, update `SENSOR_ADDRESS` before
+uploading the sketch.
 
-The analog examples remain available under `software/examples/adc/`, separate
-from the I2C clients. Their voltage calculations require
-measurement because the only available schematic describes legacy
-V0.0.1 hardware.
+### **5.4 Single-Sensor Arduino Example** {.page-break}
 
-### **5.7 Service Operation: Modifying the I2C Bridge**
+Open or create `singleSensor.ino`, then use the following sketch:
 
-Do not cut the bridge as a first troubleshooting step. First verify power,
-connector order, pull-ups, bus ownership, and scan timing. If analog-only
-operation requires isolation, remove power, document the original bridge,
-cut only the marked feature, inspect for debris, and confirm continuity before
-repowering. Restoring the bridge requires controlled solder rework.
+```{.cpp .compact-code}
+/**
+ * @file singleSensor.ino
+ * @brief Verifies a single TEMT6000 DDP device on the I2C bus and prints
+ *        its raw ADC0 readings over Serial at a fixed interval.
+ * @author Cesar Bautista
+ */
 
-### **5.8 Troubleshooting Guide** {.page-break}
+#include <Arduino.h>
+#include <Wire.h>
+#include <DevLabDDP.h>
+#include <DevLabI2CBusRecovery.h>
 
-| Symptom | Checks |
+#if defined(ARDUINO_ARCH_RP2040)
+#define I2C_BUS Wire
+constexpr uint8_t I2C_SDA = 24U, I2C_SCL = 25U;
+#elif defined(ARDUINO_ARCH_ESP32)
+#define I2C_BUS Wire
+constexpr uint8_t I2C_SDA = 6U, I2C_SCL = 7U;
+#else
+#error "Use Pulsar ESP32-C6 or Pulsar RP2350"
+#endif
+
+constexpr uint32_t I2C_FREQ = 400000;
+constexpr uint8_t SENSOR_ADDRESS = 0x20;
+constexpr uint32_t READ_INTERVAL_MS = 1000U;
+
+DevLabDDP::Master master(I2C_BUS, DevLabDDP::DEVICE_TEMT6000);
+bool deviceVerified = false;
+
+void setup() {
+  Serial.begin(115200);
+  delay(500);
+
+  if (!devlabBeginI2cBusRecovered(
+          I2C_BUS, I2C_SDA, I2C_SCL, I2C_FREQ, 100)) {
+    Serial.println("ERROR: I2C bus is blocked");
+    return;
+  }
+
+  DevLabDDP::DeviceInfo info;
+  deviceVerified = master.matchesExpectedDevice(SENSOR_ADDRESS, &info);
+
+  if (!deviceVerified) {
+    Serial.println("ERROR: address is not a DDP TEMT6000 (ID 0x0102)");
+    return;
+  }
+
+  DevLabDDP::printDeviceInfo(
+      Serial,
+      SENSOR_ADDRESS,
+      info,
+      DevLabDDP::DEVICE_TEMT6000);
+
+  Serial.println("adc0_raw");
+}
+
+void loop() {
+  uint16_t raw;
+
+  if (deviceVerified && master.readAdc(SENSOR_ADDRESS, 0, raw)) {
+    Serial.println(raw);
+  } else {
+    Serial.println("ERR");
+  }
+
+  delay(READ_INTERVAL_MS);
+}
+```
+
+### **5.5 Upload and Serial Output** {.section-page}
+
+1. Select the connected Pulsar ESP32-C6 or Pulsar RP2350 board in Arduino IDE.
+2. Select its serial port.
+3. Compile and upload `singleSensor.ino`.
+4. Open Serial Monitor at **115200 baud**.
+5. Illuminate and cover the TEMT6000 to confirm that the printed value changes.
+
+At startup, the sketch recovers and initializes the I2C bus, verifies that
+address `0x20` contains a DDP TEMT6000 with Device ID `0x0102`, and prints
+the reported device information. It then prints the heading `adc0_raw` and one
+reading per second.
+
+```text
+<DDP device information>
+adc0_raw
+<value from 0 to 4095>
+<value from 0 to 4095>
+```
+
+The readings are raw ADC values. They indicate relative light level and must
+not be interpreted directly as lux.
+
+### **5.6 Troubleshooting** {.section-page}
+
+| Serial output or symptom | Check |
 |---|---|
-| No address found | Supply/bus-logic compatibility, ground, connector orientation, populated connector, SDA/SCL continuity, intact I2C bridge |
-| Bus held low | Cable reversal, duplicate pull-ups, unintended drive on shared `SDA/SWDIO` or `SCL/SWCLK`, solder bridge, unpowered device |
-| Address found but rejected | Verify DDP major 1, Device ID `0x0102`, exact response lengths, and possible address collision |
-| DDP identity succeeds but measurement fails | Check `ANALOG_INPUT`/`SENSOR_DATA`, 5 ms delay, exact length, byte order, and 12-bit range |
-| Direct `SIG` always zero/full scale | Supply, ADC range, contact order, optical obstruction, current-board transfer function |
-| Built-in LED unexpected | Use relay-compatible commands for `PB5`; digital-I/O commands are unsupported |
-| Lux result inaccurate | Sensor spread, source spectrum, geometry, enclosure, temperature, ADC and calibration |
+| `ERROR: I2C bus is blocked` | Wiring, connector orientation, shared ground, pull-up voltage, and unintended SDA/SCL drive |
+| `ERROR: address is not a DDP TEMT6000 (ID 0x0102)` | Address setting, I2C pins, module power, and possible address collision |
+| `ERR` after successful identification | Cable continuity, bus clock, supply stability, and I2C connections |
+| Constant `0` or `4095` | Sensor obstruction, excessive illumination, supply, and module orientation |
+| Values change but lux is inaccurate | Calibrate the complete optical installation against a reference light meter |
+
+The complete Arduino examples and the reusable DDP library are listed in
+Chapter 8.

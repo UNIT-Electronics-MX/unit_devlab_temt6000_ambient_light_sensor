@@ -11,7 +11,7 @@ does not identify the manufacturer or exact part fitted to the board.
 | Parameter | Value | Status |
 |---|---:|---|
 | Nominal module supply | 3.3 V or 5 V | Supported operating points; use a current-limited source during bring-up |
-| Published controller operating voltage | 2.0–5.5 V | Conservative x7 voltage range; supports nominal 3.3 V and 5 V without asserting the fitted suffix |
+| Controller operating-voltage guidance | 2.0–5.5 V | Conservative controller-only range used until the exact fitted variant is confirmed; it includes nominal 3.3 V and 5 V operation |
 | I2C logic domain | Follows the actual bus pull-up rail | At 5 V, use a 5 V-tolerant host or bidirectional level translation |
 | I2C bus speed | 100 kHz to 400 kHz | Supported operating range |
 | I2C addressing | 7-bit slave | Valid configurable addresses are `0x08..0x77` |
@@ -28,24 +28,26 @@ does not identify the manufacturer or exact part fitted to the board.
 | Module current consumption | Not specified | Controller, LEDs, pull-ups, and sensor load are undocumented |
 | Module ambient temperature | Not specified | No complete-module qualification supplied |
 
-The controller's 2.0–5.5 V rating confirms that the controller itself can
-operate at 5 V; it does not by itself validate 5 V operation for every circuit
-on the module. The direct `SIG` path and I2C levels are referenced to the
-powered system, so every attached host must tolerate the resulting voltage or
-use level translation. Complete-module absolute maximums, pull-up resistance,
-and current consumption still require the schematic and qualification.
+The 2.0–5.5 V guidance applies only to the controller. It does not validate
+5 V operation for every circuit on the module. The direct `SIG` path and I2C
+levels are referenced to the powered system, so every attached host must
+tolerate the resulting voltage or use level translation. Complete-module
+absolute maximums, pull-up resistance, and current consumption still require
+the schematic and qualification.
 
 ### **2.2 Interface Controller Characteristics**
 
 The supplied UE0102 reference manual identifies a PY32F003L24D6TR and publishes
 1.7–5.5 V and −40 to +85 °C for that separate development board. It does not
-establish which ordering suffix was procured for this UE0098 assembly.
+establish which ordering suffix was procured for this UE0098 assembly. This
+document therefore uses the narrower 2.0–5.5 V range as conservative guidance
+for the controller until the exact fitted variant is confirmed.
 
 | Feature | Controller capability |
 |---|---|
 | CPU and application clock | 32-bit Arm Cortex-M0+; internal HSI at up to 24 MHz; external HSE oscillator not used |
 | Memory | 16 KB Flash and 2 KB SRAM |
-| Published operating voltage | 2.0–5.5 V, conservative x7 range |
+| Controller operating-voltage guidance | 2.0–5.5 V; conservative range used because the exact fitted variant is not confirmed |
 | ADC | One 12-bit ADC, up to 10 external channels, conversion range `0..VCC` |
 | I2C | Standard mode 100 kHz, Fast mode 400 kHz, 7-bit addressing |
 | GPIO | Up to 18 I/Os, all available as external interrupts |
@@ -89,6 +91,10 @@ part and module-level validation.
 | Peak sensitivity wavelength | — | — | 570 | — | nm |
 | Spectral bandwidth at half sensitivity | — | 440 | — | 800 | nm |
 
+The component values in Sections 2.3 and 2.4 are published by Vishay in
+document 81579. The complete source is listed in Chapter 8, Reference
+Documentation.
+
 ### **2.5 Legacy Analog Circuit Scope**
 
 The V0.0.1 schematic shows a TEMT6000 with a 10 kΩ emitter resistor, giving the
@@ -118,7 +124,8 @@ validated on V0.3.1.
 3. Do not exceed the controller upper operating limit of 5.5 V.
 4. At 5 V, confirm host tolerance at `SDA`, `SCL`, and `SIG`, or add suitable
    level translation before connection.
-5. Do not connect to reset or SWD; these signals are reserved for manufacturer
-   programming and advanced factory diagnostics, not user firmware replacement.
+5. During normal operation, use the shared `PA10/SDA/SWDIO` and
+   `PB6/SCL/SWCLK` lines only for I2C. SWD is an alternate factory function on
+   these same physical lines, not a separate user interface.
 6. Remove power before cutting or reworking the I2C solder bridge.
 7. Confirm the current schematic and interface specification before production.

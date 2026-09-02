@@ -475,6 +475,12 @@ pre {
   break-inside: avoid;
 }
 
+pre.compact-code {
+  font-size: 7pt;
+  line-height: 1.24;
+  padding: 3mm;
+}
+
 code {
   font-family: "Noto Sans Mono", monospace;
 }
