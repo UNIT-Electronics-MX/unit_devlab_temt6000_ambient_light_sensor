@@ -13,7 +13,7 @@ Three I2C connectors are available on the board, allowing easy integration with 
 
 <div align="center">
 
-  <img src="hardware/resources/unit_top_V_0_3_1_ue0098_temt6000.png" width="500px" alt="DevLab I2C TEMT6000 Ambient Light Sensor">
+  <img src="hardware/resources/unit_top_V_0_3_1_ue0098_temt6000.png" width="300px" alt="DevLab I2C TEMT6000 Ambient Light Sensor">
 
 </div>
 
