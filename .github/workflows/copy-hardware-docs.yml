@@ -79,39 +79,15 @@ jobs:
       with:
         path: docs
 
-    - name: Create documentation update pull request
+    - name: Commit generated documentation
       if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-      env:
-        GH_TOKEN: ${{ github.token }}
       run: |
-        docs_branch="automation/docs-${GITHUB_SHA}"
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git switch --create "$docs_branch"
         git add docs/
         if ! git diff --cached --quiet; then
           git commit -m "Auto-update hardware documentation"
-          git push --force origin "$docs_branch"
-
-          if [[ -z "$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$docs_branch" --state open --json number --jq '.[0].number')" ]]; then
-            pr_url="https://github.com/${GITHUB_REPOSITORY}/compare/main...${docs_branch}?expand=1"
-            if ! gh pr create \
-              --repo "$GITHUB_REPOSITORY" \
-              --base main \
-              --head "$docs_branch" \
-              --title "docs: update generated hardware documentation" \
-              --body "Generated from source commit ${GITHUB_SHA}. Merge this pull request to publish the generated files under docs/."; then
-              echo "::warning title=Documentation PR not created::The repository does not allow GitHub Actions to create pull requests. Open ${pr_url}"
-              {
-                echo "### Documentation branch published"
-                echo
-                echo "GitHub Actions could not create the pull request because of repository policy."
-                echo "[Open the documentation pull request](${pr_url})"
-              } >> "$GITHUB_STEP_SUMMARY"
-            fi
-          else
-            echo "Documentation pull request already exists for $docs_branch"
-          fi
+          git push origin HEAD:main
         else
           echo "No changes to commit"
         fi
