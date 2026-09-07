@@ -7,7 +7,7 @@ harness.
 
 ### **4.1 General Pinout** {.section-page}
 
-![](hardware/resources/pinout/v_0_3_1/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.png){width=4.6in}
+![](docs/hardware/resources/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.png){width=4.6in}
 
 **Figure 4.1 — Released general pinout for hardware revision V0.3.1.**
 
