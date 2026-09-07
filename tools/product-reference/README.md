@@ -2,18 +2,19 @@
 
 The UNIT ATOM TEMT6000 Product Reference source is maintained in Markdown under
 `chapters/`. Document metadata and chapter order are defined in `book.yml`.
-Version 1.1.0 is based on the V0.3.1 board images, V3.1.0 pinout, legacy
-V0.0.1 schematic, a Vishay TEMT6000X01 datasheet used only as a comparative
+Version 1.1.0 is based on the V0.3.1 board images, V3.1.0 pinout, current
+V2.0.0 schematic, a Vishay TEMT6000X01 datasheet used only as a comparative
 reference, DevLab Device Protocol v1.0, and the repository examples. The
-reference datasheet does not establish the manufacturer or exact orderable
-part fitted to the module.
+reference datasheet does not establish the exact orderable part fitted to the
+module.
 
 The Product Reference documents the current PY32F003 firmware profile: factory
 address `0x20`, internal HSI operation at up to 24 MHz without an external
 oscillator, DDP identity `0x0102`, versions 1.0, capabilities
 `0x000001B9`, command timing, persistent configuration, ADC averaging, and the
 `TEMT6000_RAW` (`0x80`) 12-bit response. It keeps the current-revision
-schematic and complete module electrical limits as open requirements.
+schematic and complete module electrical limits as open qualification
+requirements.
 
 ## Local validation build
 
@@ -44,7 +45,7 @@ generated documents or `docs/` manually.
 The Markdown chapters are the source of truth. Module values and mappings must
 come from controlled technical references. The V0.3.1 module provides Qwiic
 I2C connectors and separate direct analog access. Do not infer complete module
-limits from the legacy analog schematic or an individual component rating.
+limits from a component rating alone.
 
 Known source inconsistencies and unspecified board-level values are listed in
 Chapter 9.

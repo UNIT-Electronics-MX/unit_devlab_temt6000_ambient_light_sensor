@@ -30,7 +30,7 @@ No accessory bundle is specified. Typical integration items are:
 | Interface controller | 32-bit Arm Cortex-M0+; 16 KB Flash and 2 KB SRAM; fitted suffix not asserted |
 | Manufacturer Part Number (MPN) | UE0098 |
 | Current board artwork | |
-| Available schematic | Legacy analog hardware V0.0.1 only |
+| Available schematic | Current hardware schematic V2.0.0 |
 | Product Reference | Version 1.1.0 |
 
 Board, pinout, schematic, and documentation revisions are controlled
@@ -51,12 +51,12 @@ independently.
 
 ### **1.4 Board Views** {.section-page}
 
-![](hardware/resources/unit_top_V_0_3_1_ue0098_temt6000.png){width=2.35in}
+![](hardware/resources/unit_top_v_0_3_1_ue0098_temt6000.png){width=2.35in}
 
 The top view shows the direct sensor contacts, controller, sensor, mounting
 hole, indicator circuitry, and one Qwiic connector position.
 
-![](hardware/resources/unit_btm_V_0_3_1_ue0098_temt6000.png){width=2.35in}
+![](hardware/resources/unit_btm_v_0_3_1_ue0098_temt6000.png){width=2.35in}
 
 The bottom view labels Qwiic, the SWD aliases on that same port, reset, and the
 second optional connector position.

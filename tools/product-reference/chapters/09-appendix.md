@@ -1,18 +1,16 @@
 ## **9 Appendix**
 
-### **9.1 Legacy V0.0.1 Schematic** {.section-page}
+### **9.1 Current V2.0.0 Schematic** {.section-page}
 
-The legacy schematic is documented in
-`hardware/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf`. It documents the former
-analog-only module and is retained for traceability. It is **not** the
-electrical schematic for the controller-based V0.3.1 board.
+The current schematic is documented in
+`hardware/unit_sch_v_2_0_0_ue0098_temt6000.pdf`. It documents the
+controller-based V0.3.1 board, including the PY32F003L24D6TR, TEMT6000 analog
+stage, I2C interfaces, status LEDs, test points, and optional connectors.
 
-<!-- TODO: pending rendered PNG for the legacy V0.0.1 schematic; add it here
-     as hardware/resources/unit_schematic_V_0_0_1_ue0098_TEMT6000.png -->
-
-The legacy circuit connects a TEMT6000 phototransistor and 10 kΩ load to one
-analog signal. It contains no interface controller, SDA, SCL, PA0, PA1, reset,
-SWD, indicators, or I2C disable bridge.
+The sensor signal uses a 10 kΩ resistor (`R1`) to ground and is routed to
+controller `PA2`/ADC0 and the RAW Signal Header. The I2C bus uses
+`PA10/SDA` and `PB6/SCL`, with the same physical lines reserved for factory
+SWD aliases.
 
 ### **9.2 Document Control** {.section-page}
 
@@ -23,14 +21,14 @@ SWD, indicators, or I2C disable bridge.
 | Manufacturer Part Number (MPN) | UE0098 |
 | Current board artwork | V0.3.1 |
 | Current pinout | V3.1.0 |
-| Available schematic | Legacy V0.0.1 only |
+| Available schematic | Current V2.0.0 |
 | Product Reference | Version 1.1.0 |
 | Publication date | 2026-08-31 |
 | Interfaces | Qwiic I2C with shared factory SWD, analog, and auxiliary pads |
 
 ### **9.3 Required Technical Releases**
 
-- V0.3.1 schematic and bill of materials
+- V0.3.1 bill of materials
 - Exact controller package/ordering suffix, released firmware image, and update procedure
 - Exact oscillator/timing tolerances and uniform future DDP status behavior
 - Complete-module supply/logic absolute-maximum ratings and current consumption
@@ -46,8 +44,8 @@ SWD, indicators, or I2C disable bridge.
 - Current pinout artwork calls the product `DevLab: I2C TEMT6000`; this
   reference identifies UNIT Electronics as the company that creates and
   develops the DevLab board ecosystem, with Atom as a product family within it.
-- The current pinout shows an onboard controller and I2C/debug resources, but
-  the only schematic in the repository is the earlier analog V0.0.1 circuit.
+- The V2.0.0 schematic now documents the onboard controller and I2C/debug
+  resources shown by the current pinout.
 - Archived V0.0.1 dimensions, topology, and board views do not describe the
   longer V0.3.1 controller-based board.
 - Qwiic positions A and B are marked optional; released assembly variants and

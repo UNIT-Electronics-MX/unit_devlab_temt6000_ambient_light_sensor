@@ -1,10 +1,10 @@
 ## **2 Ratings**
 
-No current-revision schematic or released board-level electrical table is
-present for V0.3.1. This chapter therefore separates the expected Qwiic
-integration domain from comparative TEMT6000X01 reference data and explicitly
-marks current module values that still require release. That external data
-does not identify the manufacturer or exact part fitted to the board.
+A current V2.0.0 schematic is now available for the V0.3.1 board. This chapter
+separates values confirmed by that schematic from comparative TEMT6000X01
+reference data and explicitly marks current module values that still require
+electrical release or qualification. The external component data does not
+identify the exact part fitted to the board.
 
 ### **2.1 Current Module Operating Conditions** {.section-page}
 
@@ -95,17 +95,18 @@ The component values in Sections 2.3 and 2.4 are published by Vishay in
 document 81579. The complete source is listed in Chapter 8, Reference
 Documentation.
 
-### **2.5 Legacy Analog Circuit Scope**
+### **2.5 Current Analog Circuit Scope**
 
-The V0.0.1 schematic shows a TEMT6000 with a 10 kΩ emitter resistor, giving the
-first-order relation `VSIGNAL ≈ IPCE × 10 kΩ` outside saturation. Applying the
-100 lx typical current from the datasheet predicts about 0.50 V;
-this is not a guaranteed current-board value.
+The V2.0.0 schematic shows the TEMT6000 sensor with a 10 kΩ resistor (`R1`) to
+ground and the resulting `SIGNAL` net connected to controller `PA2`/ADC0 and
+the RAW Signal Header. As a first-order estimate, `VSIGNAL ≈ IPCE × 10 kΩ`
+outside saturation. Applying the 100 lx typical current from the comparative
+datasheet predicts about 0.50 V; this is not a guaranteed calibrated lux output.
 
-V0.3.1 adds an interface controller and other circuitry. Without its schematic,
-the legacy resistor value and transfer function must not be represented as a
-guaranteed current-board characteristic. Direct `SIG` must be measured and
-validated on V0.3.1.
+The schematic also documents the PY32F003L24D6TR controller, the I2C lines on
+`PA10/SDA` and `PB6/SCL`, the status LEDs, pull-ups, test points, and the two
+optional I2C connector positions. Direct `SIG` range, transfer accuracy, and
+complete-module behavior still require measurement and qualification.
 
 ### **2.6 Unspecified Current-Module Characteristics** {.section-page}
 
