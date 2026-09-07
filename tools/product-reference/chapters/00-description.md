@@ -2,8 +2,6 @@
 
 The UNIT ATOM TEMT6000 is an ambient-light sensor module developed by UNIT Electronics as part of the DevLab ecosystem. It combines a TEMT6000 visible-light phototransistor with an onboard interface controller, providing both I²C communication and direct access to the sensor’s analog signal.
 
-![](hardware/resources/unit_top_v_0_3_1_ue0098_temt6000.png){width=2.2in}
-
 The board provides two alternative Qwiic connection positions, direct VCC, GND, and SIG contacts, reserved PA0 and PA1 pads, power and built-in status indicators, and a solder bridge for disabling the I²C interface. The controller reads the sensor through its PA2 ADC input. The built-in indicator is controlled through PB5, while the I²C interface uses PB6/SCL and PA10/SDA. These pins are also shared with the factory programming interface as SWCLK and SWDIO.
 
 ### **Applications**
