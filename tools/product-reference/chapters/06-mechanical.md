@@ -7,9 +7,9 @@ shorter analog-only board.
 
 ### **6.1 Current Board Envelope** {.section-page}
 
-![](hardware/resources/v_3_1_0/unit_top_V_0_3_1_ue0098_temt6000.png){width=2.5in}
+![](hardware/resources/unit_top_V_0_3_1_ue0098_temt6000.png){width=2.5in}
 
-![](hardware/resources/v_3_1_0/unit_btm_V_0_3_1_ue0098_temt6000.png){width=2.5in}
+![](hardware/resources/unit_btm_V_0_3_1_ue0098_temt6000.png){width=2.5in}
 
 The board has a narrow module outline, direct contacts at one end, at least one
 central mounting feature, and optional horizontal Qwiic connector positions.

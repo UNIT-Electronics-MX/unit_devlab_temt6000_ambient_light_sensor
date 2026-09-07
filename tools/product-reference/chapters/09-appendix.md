@@ -2,12 +2,13 @@
 
 ### **9.1 Legacy V0.0.1 Schematic** {.section-page}
 
-The image below is rendered from
+The legacy schematic is documented in
 `hardware/unit_sch_V_0_0_1_ue0098_TEMT6000.pdf`. It documents the former
 analog-only module and is retained for traceability. It is **not** the
 electrical schematic for the controller-based V0.3.1 board.
 
-![](hardware/resources/unit_schematic_V_0_0_1_ue0098_TEMT6000.png){width=7.1in}
+<!-- TODO: pending rendered PNG for the legacy V0.0.1 schematic; add it here
+     as hardware/resources/unit_schematic_V_0_0_1_ue0098_TEMT6000.png -->
 
 The legacy circuit connects a TEMT6000 phototransistor and 10 kΩ load to one
 analog signal. It contains no interface controller, SDA, SCL, PA0, PA1, reset,
