@@ -144,7 +144,7 @@ pandoc \
   --standalone \
   --metadata-file="$BOOK_FILE" \
   --reference-doc="$REFERENCE_DOC" \
-  --resource-path="$PROJECT_DIR" \
+  --resource-path="$CHAPTER_DIR" \
   "${DOCUMENT_INPUTS[@]}" \
   --output="$DOCX_FILE"
 
@@ -158,7 +158,7 @@ pandoc \
   --metadata-file="$BOOK_FILE" \
   --template="$HTML_TEMPLATE" \
   --css="$HTML_STYLESHEET" \
-  --resource-path="$PROJECT_DIR" \
+  --resource-path="$CHAPTER_DIR" \
   "${CHAPTER_PATHS[@]}" \
   --output="$HTML_FILE"
 
