@@ -7,7 +7,7 @@ The current schematic is documented in
 controller-based V0.3.1 board, including the PY32F003L24D6TR, TEMT6000 analog
 stage, I2C interfaces, status LEDs, test points, and optional connectors.
 
-![](hardware/resources/unit_schematic_v_2_0_0_ue0098_temt6000.png){width=7.0in}
+![](../../../hardware/resources/unit_schematic_v_2_0_0_ue0098_temt6000.png){width=7.0in}
 
 **Figure 9.1 — Current V2.0.0 electrical schematic.**
 

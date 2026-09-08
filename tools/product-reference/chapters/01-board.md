@@ -51,12 +51,12 @@ independently.
 
 ### **1.4 Board Views** {.section-page}
 
-![](hardware/resources/unit_top_v_0_3_1_ue0098_temt6000.png){width=2.35in}
+![](../../../hardware/resources/unit_top_v_0_3_1_ue0098_temt6000.png){width=2.35in}
 
 The top view shows the direct sensor contacts, controller, sensor, mounting
 hole, indicator circuitry, and one Qwiic connector position.
 
-![](hardware/resources/unit_btm_v_0_3_1_ue0098_temt6000.png){width=2.35in}
+![](../../../hardware/resources/unit_btm_v_0_3_1_ue0098_temt6000.png){width=2.35in}
 
 The bottom view labels Qwiic, the SWD aliases on that same port, reset, and the
 second optional connector position.

@@ -11,7 +11,7 @@ through DevLab Device Protocol (DDP) v1.0.
 
 ### **3.1 Functional Block Diagram** {.section-page}
 
-![](tools/product-reference/assets/block_diagram.png){width=7.1in}
+![](../assets/block_diagram.png){width=7.1in}
 
 **Figure 3.1 — Functional signal and control paths.** Ambient light changes the
 TEMT6000 output. The signal is available at `SIG` and is also sampled through
@@ -64,7 +64,7 @@ The I2C host always initiates communication. The 7-bit I2C address selects the
 module, while the one-byte DDP selector identifies the requested function.
 These are independent values.
 
-![](tools/product-reference/assets/ddp_operation.png){width=7.1in}
+![](../assets/ddp_operation.png){width=7.1in}
 
 **Figure 3.2 — DDP command and response over I2C.** The host writes one DDP
 selector, issues STOP, waits 2–5 ms, and then reads the documented number of

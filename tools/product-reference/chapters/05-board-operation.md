@@ -20,7 +20,7 @@ Pulsar RP2350 host boards.
 3. Select the current release and click **Install**.
 4. Allow Arduino IDE to install the `DevLabDDP` dependency when prompted.
 
-![](tools/product-reference/assets/temt6000_library.png){width=2.8in}
+![](../assets/temt6000_library.png){width=2.8in}
 
 **Figure 5.1 — DevLab_TEMT6000 in Arduino Library Manager.** The installed
 package provides the TEMT6000 examples and installs the DDP communication
@@ -30,7 +30,7 @@ dependency used by the sketch below.
 
 Connect the module with power removed.
 
-![](tools/product-reference/assets/devlab_atom.png){width=5.8in}
+![](../assets/devlab_atom.png){width=5.8in}
 
 **Figure 5.2 — Qwiic connection to a Pulsar ESP32-C6 host.** Align the
 connector with the orientation shown and verify `VCC`, `GND`, `SDA`, and `SCL`
