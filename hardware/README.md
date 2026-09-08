@@ -104,7 +104,7 @@ complete UE0098 module.
 <div align="center">
 
 <a href="./unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.pdf">
-  <img src=".//resources/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.png" width="500px">
+  <img src="./resources/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.jpg" width="500px">
   <br/>Pinout
 </a>
 
