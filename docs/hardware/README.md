@@ -104,7 +104,7 @@ complete UE0098 module.
 <div align="center">
 
 <a href="./unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.pdf">
-  <img src="resources/unit_pinout_v_0_0_2_ue0098_temt6000_ambient_light_sensor_en.jpg" width="500px">
+  <img src="./resources/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.jpg" width="500px">
   <br/>Pinout
 </a>
 
@@ -145,8 +145,8 @@ complete UE0098 module.
 
 <div align="center">
 
-<a href="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png">
-  <img src="./resources/unit_topology_V_0_0_1_ue0098_TEMT6000.png" width="300px">
+<a href="./resources/unit_topology_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png">
+  <img src="./resources/unit_topology_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png" width="300px">
   <br/>Topology
 </a>
 
@@ -187,8 +187,8 @@ light sensor and as a platform for direct access to the TEMT6000 signal.
 
 <div align="center">
 
-<a href="./resources/unit_dimension_V_0_0_1_ue0098_TEMT6000.png">
-  <img src="./resources/unit_dimension_V_0_0_1_ue0098_TEMT6000.png" width="500px">
+<a href="./resources/unit_dimensions_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png">
+  <img src="./resources/unit_dimensions_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png" width="500px">
   <br/>Dimensions
 </a>
 
