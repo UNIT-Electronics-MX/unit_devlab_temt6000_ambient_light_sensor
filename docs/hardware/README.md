@@ -153,7 +153,7 @@ complete UE0098 module.
 | Ref. | Description |
 |------|-------------|
 | TEMT6000 | Ambient Light Sensor |
-| IC1 | PY32F003L24D6TR I2C Driver / Microcontroller |
+| IC1 | PY32F003L24D6TR I2C Driver |
 | J1, J3, J4 | I2C JST 4-pin, 1.0 mm pitch connectors |
 | J2 | RAW Signal Header |
 | PWR | Power status LED |
