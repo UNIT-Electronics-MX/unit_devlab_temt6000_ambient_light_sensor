@@ -35,10 +35,10 @@
 ## Technical Specifications
 
 The UE0098 integrates a **TEMT6000 ambient light sensor** with a
-**PY32F003L24D6TR microcontroller**, which acts as the interface between
+**PY32F003L24D6TR**, which acts as the interface between
 the sensor signal and the I2C bus.
 
-The TEMT6000 output is available to the onboard microcontroller for
+The TEMT6000 output is available for
 signal acquisition and processing. The same sensor signal is also
 exposed through a dedicated **RAW Signal Header**, allowing direct access
 for measurement, testing, characterization, or external processing.
@@ -153,7 +153,7 @@ complete UE0098 module.
 | Ref. | Description |
 |------|-------------|
 | TEMT6000 | Ambient Light Sensor |
-| IC1 | PY32F003L24D6TR I2C Driver / Microcontroller |
+| IC1 | PY32F003L24D6TR I2C Driver / |
 | J1, J3, J4 | I2C JST 4-pin, 1.0 mm pitch connectors |
 | J2 | RAW Signal Header |
 | PWR | Power status LED |
@@ -170,7 +170,7 @@ The module uses the following signal architecture:
 **TEMT6000 → Raw Sensor Signal → PY32F003 → I2C**
 
 The TEMT6000 generates an analog signal according to the incident light
-level. This signal is acquired by the onboard PY32F003 microcontroller,
+level. This signal is acquired by the onboard PY32F003,
 which can process the sensor information and expose it through the I2C
 interface.
 
