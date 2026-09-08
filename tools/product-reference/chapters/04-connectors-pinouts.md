@@ -7,13 +7,13 @@ harness.
 
 ### **4.1 General Pinout** {.section-page}
 
-![](docs/hardware/resources/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.jpg){width=4.6in}
+![](../assets/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.jpg){width=4.6in}
 
 **Figure 4.1 — Released general pinout for hardware revision V0.3.1.**
 
 ### **4.2 Signal and I2C Connection Guide** {.page-break}
 
-![](tools/product-reference/assets/temt6000_sig_i2c.png){width=6.8in}
+![](../assets/temt6000_sig_i2c.png){width=6.8in}
 
 **Figure 4.2 — Direct analog and I2C connection groups.** The direct contacts
 provide `SIG`, `GND`, and `VCC`; the Qwiic connector provides `SCL`, `SDA`,
