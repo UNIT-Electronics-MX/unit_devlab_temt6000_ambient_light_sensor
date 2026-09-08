@@ -74,8 +74,10 @@ for chapter in "${CHAPTERS[@]}"; do
   CHAPTER_PATHS+=("$PROJECT_DIR/$chapter")
 done
 
+CHAPTER_DIR="$(dirname "${CHAPTER_PATHS[0]}")"
+
 while IFS= read -r asset; do
-  if [[ ! -f "$PROJECT_DIR/$asset" ]]; then
+  if [[ ! -f "$CHAPTER_DIR/$asset" ]]; then
     echo "Error: a chapter references a missing asset: $asset" >&2
     exit 1
   fi
