@@ -11,7 +11,7 @@ through DevLab Device Protocol (DDP) v1.0.
 
 ### **3.1 Functional Block Diagram** {.section-page}
 
-![](../assets/functional-block-diagram.png){width=7.1in}
+![](../assets/block_diagram.png){width=7.1in}
 
 **Figure 3.1 — Functional signal and control paths.** Ambient light changes the
 TEMT6000 output. The signal is available at `SIG` and is also acquired by the

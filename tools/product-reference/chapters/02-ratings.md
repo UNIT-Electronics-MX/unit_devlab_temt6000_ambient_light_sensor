@@ -53,7 +53,9 @@ commands and transaction sequences are provided in Chapter 3.
 
 ### **2.3 Interface Controller Characteristics**
 
-The available controller reference documentation identifies a 32-bit Arm Cortex-M0+ device with 16 KB Flash and 2 KB SRAM.
+The onboard interface controller provides a 32-bit Arm Cortex-M0+ core, 16 KB
+Flash, and 2 KB SRAM. The capabilities below describe controller resources
+relevant to module operation; they are not complete-module electrical ratings.
 
 | Feature | Controller capability |
 |---|---|
@@ -70,9 +72,10 @@ Programming and debugging functionality is reserved for factory use on this modu
 
 ### **2.4 TEMT6000 Maximum Ratings**
 
-The values below are included only as a comparative TEMT6000 profile. They do not confirm that a specific manufacturer or ordering variant is fitted to the module and must not be interpreted as complete-module ratings.
-
-These values also do not define limits for the interface controller, indicators, pull-ups, connectors, or other board components.
+These component-level reference ratings describe a TEMT6000 profile. They are
+not absolute maximum ratings for the complete module and do not establish
+limits for the controller, indicators, pull-ups, connectors, or other board
+components.
 
 | Parameter | Symbol | Value | Unit |
 |---|---:|---:|---|
@@ -85,7 +88,8 @@ These values also do not define limits for the interface controller, indicators,
 
 ### **2.5 TEMT6000 Characteristics** {.section-page}
 
-Unless noted otherwise, the following values are specified at 25 °C and are provided for comparison only. Production specifications must be based on the confirmed fitted component and module-level validation.
+The following component-level reference characteristics apply at 25 °C unless
+otherwise noted. They are not guaranteed complete-module performance values.
 
 | Parameter | Test condition | Min. | Typ. | Max. | Unit |
 |---|---|---:|---:|---:|---|
@@ -98,15 +102,13 @@ Unless noted otherwise, the following values are specified at 25 °C and are pro
 | Peak sensitivity wavelength | — | — | 570 | — | nm |
 | Spectral bandwidth at half sensitivity | — | 440 | — | 800 | nm |
 
-The component values in Sections 2.4 and 2.5 are published by Vishay in document 81579. The complete source is listed in Chapter 8, Reference Documentation.
+### **2.6 Analog Signal Path**
 
-### **2.6 Current Analog Circuit Scope**
-
-The V2.0.0 schematic shows the TEMT6000 sensor with a 10 kΩ resistor (`R1`) to ground. The resulting `SIGNAL` net is connected to the controller ADC input and to the external `VCC`/`GND`/`SIG` header.
+The TEMT6000 analog signal is developed across a 10 kΩ resistor (`R1`) to
+ground. The resulting `SIGNAL` net is connected to the controller ADC input and
+the external `VCC`/`GND`/`SIG` contacts.
 
 As a first-order estimate, `VSIGNAL ≈ IPCE × 10 kΩ` outside saturation. Applying the typical 100 lx photocurrent from the comparative TEMT6000 data gives an estimated signal of approximately 0.50 V. This calculation is an engineering estimate and must not be interpreted as a guaranteed or calibrated lux output.
-
-The schematic also documents the I2C `SDA` and `SCL` signals, status indicators, pull-ups, test points, and the two optional I2C connector positions. The I2C connection points share controller signals with the factory programming/debug interface; there is no separate user-accessible SWD connector.
 
 The direct `SIG` range, analog transfer accuracy, source impedance, loading behavior, and complete-module response still require measurement and qualification.
 
