@@ -1,14 +1,8 @@
 # DevLab: I2C TEMT6000 Ambient Light Sensor
 
-## Introduction
+The **DevLab I2C TEMT6000 Ambient Light Sensor** is a small ambient light sensor module that contains the **TEMT6000 phototransistor** and a **microcontroller**.This version has a **I2C interface** that allows the sensor signal to be captured, processed and accessed digitally from an I2C host, unlike a typical TEMT6000 module which only offers an analog output.
 
-The **DevLab I2C TEMT6000 Ambient Light Sensor** is a compact ambient light sensing module based on the **Vishay TEMT6000 phototransistor** and a **microcontroller**.
-
-Unlike a conventional TEMT6000 module with only an analog output, this version integrates an **I2C interface** that allows the sensor signal to be acquired, processed and accessed digitally from an I2C host.
-
-The module also provides direct access to the **raw sensor signal** through a dedicated header, making it possible to use the TEMT6000 output directly for analog measurements, testing, characterization, or custom signal processing.
-
-Three I2C connectors are available on the board, allowing easy integration with other DevLab modules and I2C-based systems.
+The module also includes a dedicated header for direct access to the **raw sensor signal** allowing the TEMT6000 output to be used directly for analog measurements, testing, characterization or custom signal processing. The board has three I2C connections, which makes it easy to integrate with other DevLab modules and I2C based systems.
 
 
 <div align="center">
@@ -23,11 +17,8 @@ Three I2C connectors are available on the board, allowing easy integration with 
 ### Quick Setup
 
 [<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://wiki.uelectronics.com/wiki/devlab-temt6000-ambient-light-sensor)
-
 [<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/blob/main/hardware/unit_datasheet_v_1_0_0_ue0098_temt6000_ambient_light_sensor_en.pdf)
-
 [<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">](https://uelectronics.com/)
-
 [<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/tree/main/software)
 
 </div>
@@ -39,7 +30,7 @@ Three I2C connectors are available on the board, allowing easy integration with 
 |---|---|
 | Sensor | TEMT6000 Ambient Light Sensor |
 | Sensor Type | Ambient light phototransistor |
-| Onboard MCU | PY32F003 |
+| Onboard MCU | 32-bit Arm Cortex-M0+ |
 | Main Interface | I2C |
 | Raw Signal Access | Direct sensor signal available through dedicated header |
 | I2C Connectivity | 3 I2C connectors |
@@ -62,46 +53,7 @@ This architecture provides two ways to work with the sensor:
 - **RAW signal:** Direct access to the sensor output for analog measurements, testing, or custom processing.
 
 
-## I2C Interface
 
-The module includes **three I2C connectors** connected to the same bus, providing convenient connection points for integration with DevLab modules and other compatible I2C devices.
-
-The I2C interface provides:
-
-- SDA
-- SCL
-- VCC
-- GND
-
-The onboard PY32F003 acts as the interface between the TEMT6000 sensor signal and the I2C bus.
-
-
-## RAW Signal Header
-
-A dedicated header provides direct access to the **unprocessed TEMT6000 sensor signal**.
-
-This output can be useful for:
-
-- Direct ADC measurements.
-- Sensor characterization.
-- Signal monitoring.
-- Calibration and testing.
-- Custom external processing.
-- Educational experiments comparing raw and processed sensor data.
-
-
-## Status LEDs
-
-The module includes onboard status indicators for power and user/status feedback.
-
-These LEDs provide a simple visual indication of the module operating state and can also be used during development, testing, and debugging.
-
-
-## Test Points
-
-Dedicated test points are included to facilitate development, debugging, production testing, and hardware validation.
-
-They provide convenient access to relevant communication and control signals without requiring direct probing of the onboard components.
 
 
 ## Use Cases
@@ -126,7 +78,7 @@ They provide convenient access to relevant communication and control signals wit
 - [Datasheet](https://github.com/UNIT-Electronics-MX/unit_devlab_temt6000_ambient_light_sensor/blob/main/hardware/unit_datasheet_v_1_0_0_ue0098_temt6000_ambient_light_sensor_en.pdf)
 
 
-## 📝 License
+## License
 
 All hardware and documentation in this project are licensed under the **MIT License**.
 
