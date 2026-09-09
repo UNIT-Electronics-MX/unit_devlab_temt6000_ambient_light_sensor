@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **DevLab I2C TEMT6000 Ambient Light Sensor** is a compact ambient light sensing module based on the **Vishay TEMT6000 phototransistor** and a **PY32F003**.
+The **DevLab I2C TEMT6000 Ambient Light Sensor** is a compact ambient light sensing module based on the **Vishay TEMT6000 phototransistor** and a **microcontroller**.
 
 Unlike a conventional TEMT6000 module with only an analog output, this version integrates an **I2C interface** that allows the sensor signal to be acquired, processed and accessed digitally from an I2C host.
 
@@ -52,7 +52,7 @@ Three I2C connectors are available on the board, allowing easy integration with 
 
 The **TEMT6000** phototransistor generates a signal according to the incident ambient light level.
 
-This signal is connected directly to the onboard **PY32F003**, which can acquire and process the sensor output and make the resulting information available through the **I2C interface**.
+This signal is connected directly to the onboard **microcontroller**, which can acquire and process the sensor output and make the resulting information available through the **I2C interface**.
 
 The board also exposes the sensor signal through the **RAW Signal Header**, allowing direct access to the unprocessed TEMT6000 output independently of the I2C interface.
 
