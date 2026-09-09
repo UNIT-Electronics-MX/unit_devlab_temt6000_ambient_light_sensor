@@ -167,7 +167,7 @@ complete UE0098 module.
 
 The module uses the following signal architecture:
 
-**TEMT6000 → Raw Sensor Signal → PY32F003 → I2C**
+**TEMT6000 → Raw Sensor Signal → microcontroller → I2C**
 
 The TEMT6000 generates an analog signal according to the incident light
 level. This signal is acquired by the onboard PY32F003,
