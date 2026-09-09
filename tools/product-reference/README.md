@@ -2,11 +2,11 @@
 
 The UNIT ATOM TEMT6000 Product Reference source is maintained in Markdown under
 `chapters/`. Document metadata and chapter order are defined in `book.yml`.
-Version 1.1.0 is based on the V0.3.1 board images, V3.1.0 pinout, current
-V2.0.0 schematic, a Vishay TEMT6000X01 datasheet used only as a comparative
-reference, DevLab Device Protocol v1.0, and the repository examples. The
-reference datasheet does not establish the exact orderable part fitted to the
-module.
+Version 1.1.0 is based on the V0.3.1 board images, V3.1.0 pinout, topology and
+dimensions, current V2.0.0 schematic, a Vishay TEMT6000X01 datasheet used only
+as a comparative reference, DevLab Device Protocol v1.0, and the repository
+examples. The reference datasheet does not establish the exact orderable part
+fitted to the module.
 
 The Product Reference documents the current PY32F003 firmware profile: factory
 address `0x20`, internal HSI operation at up to 24 MHz without an external

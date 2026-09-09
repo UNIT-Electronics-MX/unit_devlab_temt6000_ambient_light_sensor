@@ -2,6 +2,8 @@
 
 | Reference | Location |
 |---|---|
+| Board topology | [V3.1.0 resource](https://github.com/UNIT-Electronics-MX/unit_devlab_temt600_ambient_light_sensor/blob/main/hardware/resources/unit_topology_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png) |
+| Board dimensions | [V3.1.0 resource](https://github.com/UNIT-Electronics-MX/unit_devlab_temt600_ambient_light_sensor/blob/main/hardware/resources/unit_dimensions_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png) |
 | Product repository | [UNIT-Electronics-MX/unit_devlab_temt600_ambient_light_sensor](https://github.com/UNIT-Electronics-MX/unit_devlab_temt600_ambient_light_sensor) |
 | Hardware reference | [hardware/README.md](https://github.com/UNIT-Electronics-MX/unit_devlab_temt600_ambient_light_sensor/blob/main/hardware/README.md) |
 | English pinout | [Released pinout — English](https://github.com/UNIT-Electronics-MX/unit_devlab_temt600_ambient_light_sensor/blob/main/hardware/unit_pinout_v_3_1_0_ue0098_temt6000_ambient_light_sensor_en.pdf) |
@@ -16,8 +18,9 @@
 | Comparative component page | [Vishay TEMT6000X01 — reference only](https://www.vishay.com/en/product/81579/) |
 | Source of component values in Sections 2.3 and 2.4 | [Vishay Semiconductors, *TEMT6000X01 Ambient Light Sensor*, document 81579 — reference only](https://www.vishay.com/docs/81579/temt6000.pdf) |
 
-The released pinout, current board images, and V2.0.0 schematic define the
-current visible interfaces and circuit topology. The Vishay datasheet is
+The released pinout, current board images, V3.1.0 topology and dimensions, and
+V2.0.0 schematic define the current visible interfaces, board layout, and
+mechanical envelope. The Vishay datasheet is
 retained only as a comparative TEMT6000X01 profile; it does not establish the
 exact orderable part fitted to this module or define complete-module ratings.
 The DDP profile defines runtime identity and digital data transport; it does

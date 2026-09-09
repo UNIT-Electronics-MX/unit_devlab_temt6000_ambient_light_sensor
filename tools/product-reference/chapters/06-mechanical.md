@@ -1,32 +1,32 @@
 ## **6 Mechanical Information**
 
-The current package provides rendered top and bottom views for V0.3.1 but no
-controlled current-revision dimension drawing. Legacy V0.0.1 dimensions are
-archived under `hardware/resources/old/` and describe a materially different,
-shorter analog-only board.
+The V3.1.0 mechanical drawing defines the current V0.3.1 board outline and the
+dimensions shown below. Dimensions are in millimetres.
 
-### **6.1 Current Board Envelope** {.section-page}
+### **6.1 Board Dimensions** {.section-page}
 
-The board has a narrow module outline, direct contacts at one end, at least one
-central mounting feature, and optional horizontal Qwiic connector positions.
-Rendered views are suitable for identification, not production measurement.
+![](../../../hardware/resources/unit_dimensions_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png){width=7.0in}
 
-### **6.2 Integration Clearances**
+**Figure 6.1 — V3.1.0 board dimensions.**
+
+The drawing specifies a 27 mm × 10 mm board outline and a 3 mm mounting hole.
+It also shows the hole centerline 5 mm from the side edge and 10.8 mm from the
+connector-end edge. Use the drawing itself as the dimensional reference; do
+not derive additional dimensions by scaling the image.
+
+### **6.2 Integration Clearances** {.section-page}
 
 Leave optical clearance around the transparent TEMT6000 sensor package and its
 field of view. Provide connector insertion and cable bend clearance at every
 populated Qwiic position. Keep conductive fasteners away from pads and service
 signals, and avoid enclosure features that shadow the sensor or LEDs.
 
-### **6.3 Mechanical Data Not Specified** {.section-page}
+### **6.3 Mechanical Data Not Specified**
 
-- Board length, width, thickness, tolerances, and finished mass
-- Hole diameters, coordinates, and edge clearances
+- Board thickness, dimensional tolerances, and finished mass
+- Unannotated feature coordinates and edge clearances
 - Optional connector population variants and mating-part numbers
 - Connector insertion envelope, retention force, and cable bend radius
 - Maximum top- and bottom-side component heights
 - Optical axis, keep-out cone, and enclosure-window specification
 - PA0/PA1 and service-pad coordinates
-
-Do not scale production dimensions from the images or reuse the archived
-V0.0.1 mechanical values for V0.3.1.

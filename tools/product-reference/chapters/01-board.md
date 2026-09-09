@@ -49,7 +49,29 @@ independently.
 | PA0/PA1 and service functions | Reserved GPIO and factory reset/debug | `PA0`/`PA1` have no current application; SWD aliases share the I2C port |
 | Internal controller mapping | `PA2` ADC, `PB5` built-in actuator, `PB6/SCL/SWCLK`, `PA10/SDA/SWDIO` | Current firmware/hardware mapping |
 
-### **1.4 Board Views** {.section-page}
+### **1.4 Board Topology** {.section-page}
+
+![](../../../hardware/resources/unit_topology_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png){width=7.0in}
+
+**Figure 1.1 — V3.1.0 board topology with top- and bottom-side reference
+designators.**
+
+The topology identifies the direct-contact header `J2`, Qwiic positions `J1`
+and `J3`, side connector `J4`, I2C-disable bridge `JP1`, sensor `Q1`,
+controller `IC1`, indicator LEDs, and service test points. Use the released
+schematic and pinout for electrical connectivity and signal definitions.
+
+| Ref. | Description |
+|---|---|
+| `TEMT6000` | Ambient Light Sensor |
+| `IC1` | PY32F003L24D6TR I2C Driver / Controller |
+| `J1`, `J3`, `J4` | I2C JST 4-pin, 1.0 mm pitch connectors |
+| `J2` | RAW Signal Header |
+| `PWR` | Power status LED |
+| `USR_LED` | User / status LED |
+| `TP` | Test points |
+
+### **1.5 Board Views** {.section-page}
 
 ![](../../../hardware/resources/unit_top_v_0_3_1_ue0098_temt6000.png){width=2.35in}
 
@@ -61,7 +83,7 @@ hole, indicator circuitry, and one Qwiic connector position.
 The bottom view labels Qwiic, the SWD aliases on that same port, reset, and the
 second optional connector position.
 
-### **1.5 Handling** {.section-page}
+### **1.6 Handling** {.section-page}
 
 Use normal ESD precautions. Keep the transparent sensor package clean and
 optically unobstructed. Remove power before changing connectors or modifying
