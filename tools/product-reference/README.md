@@ -43,9 +43,11 @@ GitHub Actions publishes the PDF and DOCX under `docs/hardware/`. Do not edit
 generated documents or `docs/` manually.
 
 The Markdown chapters are the source of truth. Module values and mappings must
-come from controlled technical references. The V0.3.1 module provides Qwiic
-I2C connectors and separate direct analog access. Do not infer complete module
-limits from a component rating alone.
+come from controlled technical references. The V0.3.1 module provides three
+I2C connection positions on the same bus—one populated by default and two
+optional horizontal positions—plus separate direct analog access through the
+`VCC`/`GND`/`SIG` header. Do not infer complete-module limits from a component
+rating alone.
 
 Known source inconsistencies and unspecified board-level values are listed in
 Chapter 9.

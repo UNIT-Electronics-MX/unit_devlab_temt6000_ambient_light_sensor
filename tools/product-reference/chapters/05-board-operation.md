@@ -32,7 +32,7 @@ Connect the module with power removed.
 
 ![](../assets/devlab_atom.png){width=5.8in}
 
-**Figure 5.2 — Qwiic connection to a Pulsar ESP32-C6 host.** Align the
+**Figure 5.2 — I2C connection to a Pulsar ESP32-C6 host.** Align the
 connector with the orientation shown and verify `VCC`, `GND`, `SDA`, and `SCL`
 before applying power.
 
@@ -69,7 +69,7 @@ Open or create `singleSensor.ino`, then use the following sketch:
 /**
  * @file singleSensor.ino
  * @brief Verifies a single TEMT6000 DDP device on the I2C bus and prints
- *        its raw ADC0 readings over Serial at a fixed interval.
+ *        its raw light readings over Serial at a fixed interval.
  * @author Cesar Bautista
  */
 

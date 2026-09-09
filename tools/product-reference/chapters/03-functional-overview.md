@@ -11,11 +11,11 @@ through DevLab Device Protocol (DDP) v1.0.
 
 ### **3.1 Functional Block Diagram** {.section-page}
 
-![](../assets/block_diagram.png){width=7.1in}
+![](../assets/functional-block-diagram.png){width=7.1in}
 
 **Figure 3.1 — Functional signal and control paths.** Ambient light changes the
-TEMT6000 output. The signal is available at `SIG` and is also sampled through
-`PA2/ADC0` for access over I2C.
+TEMT6000 output. The signal is available at `SIG` and is also acquired by the
+controller ADC for access over I2C.
 
 ### **3.2 Operating Modes**
 
@@ -109,7 +109,7 @@ and MicroPython examples listed in Chapter 8.
 
 ### **3.6 Built-In Indicator**
 
-`PB5/BUILTIN` is a user indicator controlled through the DDP actuator
+The built-in status indicator is controlled through the DDP actuator
 functions. The shared DDP command names contain `RELAY`, but this product uses
 them for the built-in indicator and does not provide an electromechanical
 relay output.
@@ -124,11 +124,17 @@ complete board-level transfer function, source impedance, and guaranteed
 output range are not specified for the current revision. Use a high-impedance
 input and verify the actual range before connecting it to a lower-voltage ADC.
 
-The normal I2C signals share controller pins with the service labels shown on
-the board: `PA10` is `SDA/SWDIO`, and `PB6` is `SCL/SWCLK`. There is no
-separate SWD connector. For normal product use, connect these lines as `SDA`
-and `SCL`.
+The PCB provides three I2C connection positions carrying `GND`, `VCC`, `SDA`,
+and `SCL`: one connector is populated by default and two horizontal positions
+are provided for optional 4-pin, 1.00 mm-pitch JST/Qwiic-compatible
+connectors. All three positions access the same I2C bus.
 
-`PA0` and `PA1` are reserved and have no current user function. The I2C
+The I2C connection points share signals with the controller's factory
+programming and debugging interface; there is no separate user-accessible SWD
+connector. Programming, debug, and reset functions are reserved for
+manufacturer programming and factory diagnostics, not user firmware
+replacement.
+
+Two expansion pads are reserved and have no current user function. The I2C
 disable bridge is intended for applications that require the analog path
 without active I2C operation; remove power before cutting or restoring it.
