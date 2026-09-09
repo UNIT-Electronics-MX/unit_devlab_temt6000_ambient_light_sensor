@@ -49,6 +49,12 @@ jobs:
 
     - name: Install document build tools
       run: |
+        # The PDF is rendered with WeasyPrint. Disable the preconfigured
+        # Google Chrome repository so a transient CDN index mismatch cannot
+        # block installation of the required Ubuntu packages.
+        sudo rm -f \
+          /etc/apt/sources.list.d/google-chrome.list \
+          /etc/apt/sources.list.d/google-chrome.sources
         sudo apt-get update
         sudo apt-get install --yes pandoc fonts-noto-core fonts-noto-mono
         python -m pip install --upgrade pip
