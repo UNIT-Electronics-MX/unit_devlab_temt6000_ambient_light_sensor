@@ -35,7 +35,7 @@
 ## Technical Specifications
 
 The UE0098 integrates a **TEMT6000 ambient light sensor** with a
-**PY32F003L24D6TR**, which acts as the interface between
+**microcontroller**, which acts as the interface between
 the sensor signal and the I2C bus.
 
 The TEMT6000 output is available for
@@ -167,7 +167,7 @@ complete UE0098 module.
 
 The module uses the following signal architecture:
 
-**TEMT6000 → Raw Sensor Signal → PY32F003 → I2C**
+**TEMT6000 → Raw Sensor Signal → microcontroller → I2C**
 
 The TEMT6000 generates an analog signal according to the incident light
 level. This signal is acquired by the onboard PY32F003,
