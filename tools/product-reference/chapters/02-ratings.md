@@ -1,37 +1,59 @@
 ## **2 Ratings**
 
-This chapter separates values confirmed by the current module documentation from comparative TEMT6000 reference data and explicitly identifies module characteristics that still require electrical release or qualification. External component data does not, by itself, confirm the exact component variant fitted to the board.
+This chapter summarizes the electrical operating conditions and interface
+characteristics relevant to integrating the UNIT ATOM TEMT6000. It covers the
+module supply, I2C operation, analog sensor path, controller capabilities, and
+ambient-light sensor characteristics. Use these ratings to select a compatible
+power source and host interface and to identify the electrical characteristics
+that require application-specific verification.
 
-### **2.1 Current Module Operating Conditions** {.section-page}
+### **2.1 Recommended Operating Conditions** {.section-page}
 
-| Parameter | Value | Status |
+| Symbol | Description | Min. | Typ. | Max. | Unit |
+|---|---|---:|---:|---:|---|
+| `VCC` | Module supply voltage | — | 3.3 or 5 | — | V |
+| `VI2C` | I2C logic-high and pull-up voltage | — | `VCC` | — | V |
+| `fSCL` | I2C clock frequency | 100 | — | 400 | kHz |
+| `VSIG` | Direct analog `SIG` voltage range | — | Not specified | — | V |
+| `ICC` | Module supply current | — | Not specified | — | mA |
+| `TA` | Module ambient operating temperature | Not specified | — | Not specified | °C |
+
+The `VCC` values are the supported nominal operating points; they are not
+complete-module absolute maximum ratings. The validated continuous supply
+range around each nominal point is not specified.
+
+Use a current-limited source during initial bring-up. The I2C pull-ups follow
+the module supply, so the host must tolerate the actual bus voltage. When the
+module operates at 5 V with a 3.3 V host, bidirectional level translation may
+be required.
+
+The direct `SIG` range requires analog-stage verification and measurement.
+Module current consumption must include the controller, indicators, pull-ups,
+and sensor load. The complete-module ambient-temperature range has not been
+qualified. I2C pull-up resistance, bus capacitance, and complete-module
+absolute maximum ratings are also not specified.
+
+### **2.2 Digital Interface and Firmware Characteristics**
+
+| Parameter | Value | Description |
 |---|---:|---|
-| Nominal module supply | 3.3 V or 5 V | Supported operating points; use a current-limited source during bring-up |
-| I2C logic domain | Follows the actual bus pull-up rail | At 5 V, use a 5 V-tolerant host or bidirectional level translation |
-| I2C bus speed | 100 kHz to 400 kHz | Supported operating range |
 | I2C addressing | 7-bit slave | Valid configurable addresses are `0x08..0x77` |
-| Factory I2C address | `0x20` (7-bit) | Use `0x20` in I2C libraries. `0x40` is the 8-bit write address, not the device address |
+| Factory I2C address | `0x20` (7-bit) | Pass `0x20` directly to the host I2C library; `0x40` is the 8-bit write address, not the device address |
 | Device protocol | DDP v1.0 | Command transaction followed by an exact-length read transaction |
-| Logical Device ID | `0x0102` | TEMT6000 identity; independent of I2C address |
+| Logical Device ID | `0x0102` | TEMT6000 identity; independent of the I2C address |
 | Firmware / hardware | 1.0 / 1.0 | Current observable controller profile |
 | Capability bitmap | `0x000001B9` | I2C configuration, analog input, sensor data, relay, watchdog, and persistent configuration |
 | Raw digital sample | `0` to `4095` | 12-bit ADC code returned as an unsigned 16-bit little-endian value |
-| ADC update interval | Approximately 20 ms | Background acquisition; I2C reads return the latest published sample |
+| ADC update interval | Approximately 20 ms | Background acquisition; an I2C read returns the latest published sample |
 | Command processing delay | 2 to 5 ms | Use 5 ms conservatively before reading |
 | Pending setter timeout | 250 ms | Parameter must arrive before expiry |
-| Direct `SIG` range | Not specified | Requires current analog-stage schematic verification and measurement |
-| Module current consumption | Not specified | Controller, indicators, pull-ups, and sensor load require module-level characterization |
-| Module ambient temperature | Not specified | No complete-module qualification supplied |
 
-The direct `SIG` path and I2C logic levels are referenced to the powered system. Every attached host must therefore tolerate the resulting signal levels or use appropriate level translation.
+These values describe the currently documented digital behavior. Detailed DDP
+commands and transaction sequences are provided in Chapter 3.
 
-Complete-module absolute maximum ratings, I2C pull-up resistance, current consumption, and other board-level electrical limits require confirmation from the released schematic and module-level qualification.
+### **2.3 Interface Controller Characteristics**
 
-### **2.2 Interface Controller Characteristics**
-
-The available controller reference documentation identifies a 32-bit Arm Cortex-M0+ device with 16 KB Flash and 2 KB SRAM. The exact fitted ordering variant must be confirmed before component-specific limits are treated as production specifications.
-
-A conservative controller operating range of 2.0–5.5 V is used in this document until the exact fitted variant and its applicable electrical characteristics are confirmed.
+The available controller reference documentation identifies a 32-bit Arm Cortex-M0+ device with 16 KB Flash and 2 KB SRAM.
 
 | Feature | Controller capability |
 |---|---|
@@ -46,7 +68,7 @@ A conservative controller operating range of 2.0–5.5 V is used in this documen
 
 Programming and debugging functionality is reserved for factory use on this module. The controller operating range applies only to the controller and does not establish the absolute maximum ratings of the complete module or every externally accessible contact.
 
-### **2.3 TEMT6000 Maximum Ratings**
+### **2.4 TEMT6000 Maximum Ratings**
 
 The values below are included only as a comparative TEMT6000 profile. They do not confirm that a specific manufacturer or ordering variant is fitted to the module and must not be interpreted as complete-module ratings.
 
@@ -61,7 +83,7 @@ These values also do not define limits for the interface controller, indicators,
 | Junction temperature | `Tj` | 100 | °C |
 | Component operating temperature | `Tamb` | −40 to +100 | °C |
 
-### **2.4 TEMT6000 Characteristics** {.section-page}
+### **2.5 TEMT6000 Characteristics** {.section-page}
 
 Unless noted otherwise, the following values are specified at 25 °C and are provided for comparison only. Production specifications must be based on the confirmed fitted component and module-level validation.
 
@@ -76,9 +98,9 @@ Unless noted otherwise, the following values are specified at 25 °C and are pro
 | Peak sensitivity wavelength | — | — | 570 | — | nm |
 | Spectral bandwidth at half sensitivity | — | 440 | — | 800 | nm |
 
-The component values in Sections 2.3 and 2.4 are published by Vishay in document 81579. The complete source is listed in Chapter 8, Reference Documentation.
+The component values in Sections 2.4 and 2.5 are published by Vishay in document 81579. The complete source is listed in Chapter 8, Reference Documentation.
 
-### **2.5 Current Analog Circuit Scope**
+### **2.6 Current Analog Circuit Scope**
 
 The V2.0.0 schematic shows the TEMT6000 sensor with a 10 kΩ resistor (`R1`) to ground. The resulting `SIGNAL` net is connected to the controller ADC input and to the external `VCC`/`GND`/`SIG` header.
 
@@ -88,7 +110,7 @@ The schematic also documents the I2C `SDA` and `SCL` signals, status indicators,
 
 The direct `SIG` range, analog transfer accuracy, source impedance, loading behavior, and complete-module response still require measurement and qualification.
 
-### **2.6 Unspecified Current-Module Characteristics** {.section-page}
+### **2.7 Unspecified Current-Module Characteristics** {.section-page}
 
 - Complete-module absolute maximum ratings, current consumption, and power-up behavior
 - Exact oscillator and timing tolerance
@@ -105,7 +127,7 @@ The direct `SIG` range, analog transfer accuracy, source impedance, loading beha
 
 Until these characteristics are validated, component-level specifications must not be interpreted as guaranteed complete-module specifications.
 
-### **2.7 Electrical Precautions**
+### **2.8 Electrical Precautions**
 
 1. Use a current-limited 3.3 V or 5 V supply during engineering bring-up.
 2. Verify connector orientation and establish a common ground before applying power.
