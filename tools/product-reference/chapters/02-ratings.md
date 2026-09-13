@@ -51,24 +51,22 @@ absolute maximum ratings are also not specified.
 These values describe the currently documented digital behavior. Detailed DDP
 commands and transaction sequences are provided in Chapter 3.
 
-### **2.3 Interface Controller Characteristics**
+### **2.3 Onboard Interface Controller**
 
-The onboard interface controller provides a 32-bit Arm Cortex-M0+ core, 16 KB
-Flash, and 2 KB SRAM. The capabilities below describe controller resources
-relevant to module operation; they are not complete-module electrical ratings.
+The onboard controller acquires the analog output of the TEMT6000 and provides
+the processed sensor data through the module's I2C interface. The controller is
+not exposed as a general-purpose microcontroller and is not intended for
+user programming.
 
-| Feature | Controller capability |
+| Feature | Module implementation |
 |---|---|
-| CPU and application clock | 32-bit Arm Cortex-M0+; internal HSI at up to 24 MHz |
-| Memory | 16 KB Flash and 2 KB SRAM |
-| Controller operating-voltage guidance | 2.0–5.5 V; conservative range pending confirmation of the exact fitted variant |
-| ADC | 12-bit analog-to-digital conversion used for sensor acquisition |
-| I2C | Standard mode at 100 kHz and Fast mode at 400 kHz; 7-bit addressing |
-| GPIO | General-purpose digital I/O and external-interrupt capability |
-| Timers | General-purpose, advanced-control, low-power, watchdog, and system timing resources |
-| Other interfaces | SPI, USART, DMA, RTC, CRC, comparators, unique device identification, and factory programming/debug functionality |
-
-Programming and debugging functionality is reserved for factory use on this module. The controller operating range applies only to the controller and does not establish the absolute maximum ratings of the complete module or every externally accessible contact.
+| Internal controller | 32-bit Arm Cortex-M0+ |
+| Sensor acquisition | 12-bit ADC |
+| User digital interface | I2C |
+| I2C addressing | 7-bit addressing |
+| Supported I2C clock | 100 kHz and 400 kHz |
+| Direct sensor access | Analog `SIG` contact |
+| Programming and debugging | Reserved for factory use |
 
 ### **2.4 TEMT6000 Maximum Ratings**
 
