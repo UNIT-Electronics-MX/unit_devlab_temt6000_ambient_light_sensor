@@ -110,22 +110,25 @@ As a first-order estimate, `VSIGNAL ≈ IPCE × 10 kΩ` outside saturation. Appl
 
 The direct `SIG` range, analog transfer accuracy, source impedance, loading behavior, and complete-module response still require measurement and qualification.
 
-### **2.7 Unspecified Current-Module Characteristics** {.section-page}
+### **2.7 Module-Level Characteristics Not Yet Specified**
 
-- Complete-module absolute maximum ratings, current consumption, and power-up behavior
-- Exact oscillator and timing tolerance
-- Electrical I2C bus-loading limits
-- Pull-up resistance and supported bus capacitance
-- I2C logic-level compatibility under all supported supply conditions
-- Direct analog transfer function, load resistance, range, accuracy, and source impedance
-- Guaranteed lux measurement range, accuracy, repeatability, response time, and calibration
-- Exact controller ordering variant
-- Controlled firmware image and manufacturer programming procedure
+The following complete-module characteristics have not been qualified or
+specified for the current product revision:
+
+- Absolute maximum ratings for the complete module
+- Supply-current consumption
+- Validated continuous supply-voltage range around the nominal 3.3 V and 5 V operating points
+- Power-up and initialization behavior
+- I2C pull-up resistance and supported bus capacitance
+- Guaranteed I2C logic-level compatibility across all supported supply conditions
+- Direct `SIG` output range, accuracy, source impedance, and loading limits
+- Guaranteed illuminance range, accuracy, repeatability, and calibrated lux response
 - Board-level operating-temperature range
 - ESD and EMC ratings
 - Humidity and ingress ratings
 
-Until these characteristics are validated, component-level specifications must not be interpreted as guaranteed complete-module specifications.
+Unless explicitly stated otherwise, component-level characteristics shall not
+be interpreted as guaranteed specifications of the complete module.
 
 ### **2.8 Electrical Precautions**
 
