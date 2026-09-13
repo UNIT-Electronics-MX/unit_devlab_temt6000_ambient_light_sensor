@@ -110,25 +110,33 @@ As a first-order estimate, `VSIGNAL ≈ IPCE × 10 kΩ` outside saturation. Appl
 
 The direct `SIG` range, analog transfer accuracy, source impedance, loading behavior, and complete-module response still require measurement and qualification.
 
-### **2.7 Module-Level Characteristics Not Yet Specified**
+### **2.7 Module-Level Characteristics**
 
-The following complete-module characteristics have not been qualified or
-specified for the current product revision:
+The following characteristics are established for the current module
+implementation and are described in the preceding sections.
 
-- Absolute maximum ratings for the complete module
-- Supply-current consumption
-- Validated continuous supply-voltage range around the nominal 3.3 V and 5 V operating points
-- Power-up and initialization behavior
-- I2C pull-up resistance and supported bus capacitance
-- Guaranteed I2C logic-level compatibility across all supported supply conditions
-- Direct `SIG` output range, accuracy, source impedance, and loading limits
-- Guaranteed illuminance range, accuracy, repeatability, and calibrated lux response
-- Board-level operating-temperature range
-- ESD and EMC ratings
-- Humidity and ingress ratings
+| Characteristic | Current module specification |
+|---|---|
+| Nominal supply voltage | 3.3 V or 5 V |
+| Digital interface | I2C, 7-bit slave |
+| Factory I2C address | `0x20` |
+| Configurable I2C address range | `0x08` to `0x77` |
+| I2C clock frequency | 100 kHz to 400 kHz |
+| Sensor acquisition | 12-bit ADC |
+| Raw digital output | 0 to 4095 |
+| ADC update interval | Approximately 20 ms |
+| Command processing delay | 2 to 5 ms |
+| Direct analog access | `SIG` contact connected to the TEMT6000 signal path |
+| Sensor load resistor | 10 kΩ to GND |
 
-Unless explicitly stated otherwise, component-level characteristics shall not
-be interpreted as guaranteed specifications of the complete module.
+Additional characteristics such as complete-module absolute maximum ratings,
+supply-current limits, guaranteed analog-output accuracy, calibrated lux
+accuracy, board-level operating-temperature range, and environmental
+qualification are not specified unless explicitly stated elsewhere in this
+Product Reference.
+
+Component-level ratings shall not be interpreted as guaranteed ratings of the
+complete module.
 
 ### **2.8 Electrical Precautions**
 
