@@ -42,18 +42,19 @@ The following equipment may be used for integration, testing, and validation. Th
 Board, pinout, schematic, and documentation revisions are controlled
 independently.
 
-### **1.4 Identified Assemblies**
+### **1.4 Board Components and Features**
 
-| Assembly | Function | Source status |
+| Component / Feature | Function | Implementation / Notes |
 |---|---|---|
-| TEMT6000 sensor | Converts visible light to photocurrent | Functional identity shown by board/pinout artwork; manufacturer and exact suffix unconfirmed |
-| Interface controller | Samples and processes the sensor signal for I2C access | 32-bit Arm Cortex-M0+; 16 KB Flash and 2 KB SRAM |
-| I2C connection positions | Provide module power and I2C bus access | `J1` is populated by default; `J3` and `J4` are optional horizontal 4-pin, 1.00 mm-pitch JST/Qwiic-compatible connector positions |
-| Direct contacts | Provide `VCC`, `GND`, and analog `SIG` access | Identified on the top view |
-| I2C disable bridge | Allows the I2C interface to be disconnected or disabled by cutting the bridge | Function identified; exact circuit implementation unspecified |
-| Power and built-in indicators | Provide power and firmware-controlled status indication | Power and built-in indicators identified on the board |
-| Reserved expansion pads | Reserved connections with no current application assignment | Two reserved pads identified on the board |
-| Factory service functions | Provide controller programming, debug, and reset functions | Reserved for manufacturer use; programming signals share the I2C interface |
+| TEMT6000 sensor | Converts visible light to photocurrent | Primary ambient-light sensing element |
+| Interface controller | Samples and processes the sensor signal for I2C access | 32-bit Arm Cortex-M0+ with 16 KB Flash and 2 KB SRAM |
+| I2C connections | Provide module power and I2C bus access | `J1` is populated by default; `J3` and `J4` support optional horizontal 4-pin, 1.00 mm-pitch JST/Qwiic-compatible connectors |
+| Direct contacts | Provide direct access to `VCC`, `GND`, and analog `SIG` | Intended for analog signal access and external ADC measurement |
+| I2C disable bridge | Allows the I2C interface to be disabled | Cut `JP1` to disable I2C operation |
+| Power indicator | Indicates that the board is powered | Onboard `PWR` indicator |
+| Built-in status indicator | Provides firmware-controlled status indication | Onboard `USR_LED` indicator |
+| Reserved expansion pads | Provide connections reserved for future expansion | No user function is currently assigned |
+| Factory service functions | Support controller programming, debugging, and reset | Reserved for manufacturer use; programming signals share the I2C interface |
 
 ### **1.5 Board Layout and Reference Designators** {.section-page}
 
