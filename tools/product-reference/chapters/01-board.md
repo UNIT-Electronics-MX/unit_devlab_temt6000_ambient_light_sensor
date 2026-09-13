@@ -7,17 +7,24 @@ reuse the I2C signals; they are not a separate user interface.
 
 ### **1.1 Accessories** {.section-page}
 
-No accessory bundle is specified. Typical integration items are:
+The module is supplied with a Qwiic-compatible cable for connection to the I2C interface.
 
 | Accessory | Purpose | Selection notes |
 |---|---|---|
-| JST/Qwiic-compatible cable | Connects `GND`, `VCC`, `SDA`, and `SCL` | Verify 1.00 mm pitch, orientation, and contact order against the populated connector |
-| I2C-capable host | Scans and communicates with the module | Use 7-bit addressing and a clock from 100 kHz through 400 kHz |
-| Analog test lead or carrier | Accesses `VCC`, `GND`, and `SIG` | `SIG` must connect to a voltage-compatible ADC input |
-| Logic analyzer | Checks I2C activity | Use input thresholds compatible with the powered board |
-| Reference lux meter | Supports optical calibration | Required for quantitative illuminance validation |
+| JST/Qwiic-compatible cable | Connects `GND`, `VCC`, `SDA`, and `SCL` | Verify 1.00 mm pitch, connector orientation, and contact order against the populated connector |
 
-### **1.2 Board Identification**
+### **1.2 Recommended Test Equipment** 
+
+The following equipment may be used for integration, testing, and validation. These items are not included with the module.
+
+| Equipment | Purpose | Selection notes |
+|---|---|---|
+| I2C-capable host | Scans and communicates with the module | Use 7-bit addressing and an I2C clock from 100 kHz through 400 kHz |
+| Analog test lead or carrier | Provides access to `VCC`, `GND`, and `SIG` | `SIG` must connect to a voltage-compatible ADC input |
+| Logic analyzer | Checks I2C communication activity | Use input thresholds compatible with the powered board |
+| Reference lux meter | Supports optical calibration and validation | Required for quantitative illuminance validation |
+
+### **1.3 Board Identification**
 
 | Item | Value |
 |---|---|
@@ -35,7 +42,7 @@ No accessory bundle is specified. Typical integration items are:
 Board, pinout, schematic, and documentation revisions are controlled
 independently.
 
-### **1.3 Identified Assemblies**
+### **1.4 Identified Assemblies**
 
 | Assembly | Function | Source status |
 |---|---|---|
@@ -48,7 +55,7 @@ independently.
 | Reserved expansion pads | Reserved connections with no current application assignment | Two reserved pads identified on the board |
 | Factory service functions | Provide controller programming, debug, and reset functions | Reserved for manufacturer use; programming signals share the I2C interface |
 
-### **1.4 Board Layout and Reference Designators** {.section-page}
+### **1.5 Board Layout and Reference Designators** {.section-page}
 
 ![](../../../hardware/resources/unit_topology_v_3_1_0_ue0098_temt6000_ambient_light_sensor.png){width=7.0in}
 
