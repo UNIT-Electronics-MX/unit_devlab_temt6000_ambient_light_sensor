@@ -43,10 +43,9 @@ before applying power.
 | `SDA` | GPIO6 | GPIO24 | I2C data |
 | `SCL` | GPIO7 | GPIO25 | I2C clock |
 
-The pin numbers above match `singleSensor.ino`. Change `I2C_SDA` and
-`I2C_SCL` when the selected host board uses different I2C pins. At 5 V,
-confirm that the host accepts the bus pull-up voltage or use bidirectional
-level translation.
+The pin numbers above match `singleSensor.ino`. Change `I2C_SDA` and `I2C_SCL` when the selected host board uses different I2C pins.
+
+Important: The I2C pull-up voltage follows the module supply (VCC). When operating the module at 5 V, verify that the host I2C pins are 5 V tolerant. If the host operates at 3.3 V and is not 5 V tolerant, use appropriate bidirectional level translation between the module and the host.
 
 The example uses the following settings:
 
