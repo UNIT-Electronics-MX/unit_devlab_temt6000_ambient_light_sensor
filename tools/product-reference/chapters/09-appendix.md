@@ -36,13 +36,10 @@ and debugging interface; there is no separate user-accessible SWD connector.
 | Publication date | 2026-08-31 |
 | Interfaces | Three I2C connection positions on one bus; `VCC`/`GND`/`SIG` header; reserved expansion pads; shared factory programming/debug signals |
 
-### **9.3 Required Technical Releases**
+### **9.3 Technical Data Not Specified in This Revision**
 
-- V0.3.1 bill of materials
-- Exact controller package/ordering suffix and controlled manufacturer programming release
-- Exact oscillator/timing tolerances and uniform future DDP status behavior
-- Complete-module supply/logic absolute-maximum ratings and current consumption
-- Pull-up values and bus-loading limits
-- Direct `SIG` transfer, loading, range, and ADC guidance
+- Complete-module absolute-maximum ratings and current consumption
+- I2C pull-up values and validated bus-loading limits
+- Direct `SIG` output range, loading characteristics, and ADC guidance
 - Mechanical tolerances, board thickness, component heights, and finished mass
 - Module-level optical, electrical, environmental, and EMC characterization
