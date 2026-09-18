@@ -66,16 +66,8 @@ and there is no separate user-accessible SWD connector.
 | Reserved expansion pad 2 | Reserved connection | No current application assignment; electrical limits unspecified |
 | Controller reset | Factory service function | Manufacturer programming and factory diagnostics only |
 
-Programming, debugging, and reset are not user interfaces, and the product is
-not documented for user firmware replacement. During manufacturer programming
-or factory diagnostics, I2C must be inactive and other bus devices must be
-isolated from the shared signals.
+Programming, debugging, and reset are intended primarily for development, manufacturing, and service purposes. Currently, user firmware programming is not supported or documented. During programming or diagnostics, I2C must be inactive and other bus devices must be isolated from the shared signals.
 
 ### **4.6 Indicators and I2C Bridge**
 
-The module provides a power indicator, a firmware-controlled built-in status
-indicator, and a cuttable bridge used to disable I2C operation. Indicator
-polarity and current, along with the bridge's complete electrical behavior,
-require confirmation from the released schematic and module-level validation.
-The controller ADC input used for sensor acquisition is internal to the module
-and is not an additional external contact.
+The module provides a power indicator, a firmware-controlled built-in status indicator, and a normally closed solder bridge that connects the sensor’s raw output signal to the controller ADC input. Opening the bridge isolates the raw sensor signal from the ADC, and the connection can be restored by re-soldering the bridge. The controller ADC input used for sensor acquisition is internal to the module and is not an additional external contact.
